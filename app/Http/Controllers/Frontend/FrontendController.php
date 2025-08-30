@@ -36,4 +36,24 @@ class FrontendController extends Controller
     {
         return view('frontend.pages.shop');
     }
+
+    /**
+     * Show the cart page.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function cart()
+    {
+        return view('frontend.pages.cart');
+    }
+
+    /**
+     * Show the checkout page.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function checkout()
+    {
+        return view('frontend.pages.checkout');
+    }
 }

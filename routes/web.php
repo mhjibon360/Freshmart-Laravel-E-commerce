@@ -12,6 +12,8 @@ Route::controller(FrontendController::class)->group(function () {
     Route::get('/', 'index')->name('home.index');
     Route::get('product/details', 'productDetails')->name('product.details');
     Route::get('/shop','shop')->name('shop');
+    Route::get('/cart','cart')->name('cart');
+    Route::get('/checkout','checkout')->name('checkout');
 });
 
 Route::controller(BackendController::class)->group(function () {
