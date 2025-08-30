@@ -22,10 +22,12 @@ Route::controller(FrontendController::class)->group(function () {
 
 
 
-Route::controller(UserController::class)->group(function () {
-    Route::get('/dashboard', 'index')->name('dashboard');
-    Route::get('/order', 'order')->name('order');
-    Route::get('/setting', 'setting')->name('setting');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::controller(UserController::class)->group(function () {
+        Route::get('/dashboard', 'index')->name('dashboard');
+        Route::get('/order', 'order')->name('order');
+        Route::get('/setting', 'setting')->name('setting');
+    });
 });
 
 Route::middleware('auth')->group(function () {
@@ -37,7 +39,3 @@ Route::middleware('auth')->group(function () {
 require __DIR__ . '/auth.php';
 
 
-
-Route::controller(BackendController::class)->group(function () {
-    Route::get('/admin/dashboard', 'index')->name('admin.dashboard');
-});
