@@ -49,10 +49,14 @@
             </li>
             <!-- nav item -->
             <li class="nav-item">
-                <a class="nav-link" href="../index.html">
-                    <i class="feather-icon icon-log-out me-2"></i>
-                    Log out
-                </a>
+                <form action="{{ route('logout') }}" method="post" id="logout-form" style="display: inline;">
+                    @csrf
+                    @method('post')
+                    <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <i class="feather-icon icon-log-out me-2"></i>
+                        Log out
+                    </a>
+                </form>
             </li>
         </ul>
     </div>

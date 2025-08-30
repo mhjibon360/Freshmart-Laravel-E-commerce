@@ -1,63 +1,14 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
-
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
-
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
-
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-            </label>
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
-
-
-{{-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta content="Codescandy" name="author" />
-    <title>Sign in eCommerce HTML Template - FreshCart</title>
+    <title>Sign in eCommerce FreshCart</title>
     <!-- Favicon icon-->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('frontend') }}/assets/images/favicon/favicon.ico" />
-
     <!-- Libs CSS -->
     <link href="{{ asset('frontend/assets/libs/bootstrap-icons/font/bootstrap-icons.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('frontend/assets/libs/feather-webfont/dist/feather-icons.css') }}" rel="stylesheet" />
@@ -66,30 +17,6 @@
     <!-- Theme CSS -->
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/theme.min.css') }}" />
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-M8S4MT3EYG"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag("js", new Date());
-
-        gtag("config", "G-M8S4MT3EYG");
-    </script>
-    <script type="text/javascript">
-        (function(c, l, a, r, i, t, y) {
-            c[a] =
-                c[a] ||
-                function() {
-                    (c[a].q = c[a].q || []).push(arguments);
-                };
-            t = l.createElement(r);
-            t.async = 1;
-            t.src = "https://www.clarity.ms/tag/" + i;
-            y = l.getElementsByTagName(r)[0];
-            y.parentNode.insertBefore(t, y);
-        })(window, document, "clarity", "script", "kuc8w5o9nt");
-    </script>
 </head>
 
 <body>
@@ -97,13 +24,13 @@
     <div class="border-bottom shadow-sm">
         <nav class="navbar navbar-light py-2">
             <div class="container justify-content-center justify-content-lg-between">
-                <a class="navbar-brand" href="../index.html">
+                <a class="navbar-brand" href="{{ route('home.index') }}">
                     <img src="{{ asset('frontend') }}/assets/images/logo/freshcart-logo.svg" alt=""
                         class="d-inline-block align-text-top" />
                 </a>
                 <span class="navbar-text">
                     Already have an account?
-                    <a href="signin.html">Sign in</a>
+                    <a href="{{ route('login') }}">Sign in</a>
                 </span>
             </div>
         </nav>
@@ -127,15 +54,15 @@
                             <p>Welcome back to FreshCart! Enter your email to get started.</p>
                         </div>
 
-                        <form class="needs-validation" novalidate>
+                        <form class="needs-validation" novalidate method="POST" action="{{ route('login') }}">
+                            @csrf
                             <div class="row g-3">
                                 <!-- row -->
-
                                 <div class="col-12">
                                     <!-- input -->
                                     <label for="formSigninEmail" class="form-label visually-hidden">Email
                                         address</label>
-                                    <input type="email" class="form-control" id="formSigninEmail" placeholder="Email"
+                                    <input type="email" name="email" value="{{ old('email') }}" class="form-control" id="formSigninEmail" placeholder="Email"
                                         required />
                                     <div class="invalid-feedback">Please enter name.</div>
                                 </div>
@@ -145,7 +72,7 @@
                                         <label for="formSigninPassword"
                                             class="form-label visually-hidden">Password</label>
                                         <div class="password-field position-relative">
-                                            <input type="password" class="form-control fakePassword"
+                                            <input type="password" name="password" class="form-control fakePassword"
                                                 id="formSigninPassword" placeholder="*****" required />
                                             <span><i class="bi bi-eye-slash passwordToggler"></i></span>
                                             <div class="invalid-feedback">Please enter password.</div>
@@ -155,14 +82,14 @@
                                 <div class="d-flex justify-content-between">
                                     <!-- form check -->
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value=""
+                                        <input class="form-check-input" type="checkbox" name="remember" value=""
                                             id="flexCheckDefault" />
                                         <!-- label -->
                                         <label class="form-check-label" for="flexCheckDefault">Remember me</label>
                                     </div>
                                     <div>
                                         Forgot password?
-                                        <a href="forgot-password.html">Reset It</a>
+                                        <a href="{{ route('password.request') }}">Reset It</a>
                                     </div>
                                 </div>
                                 <!-- btn -->
@@ -171,7 +98,7 @@
                                 <!-- link -->
                                 <div>
                                     Don’t have an account?
-                                    <a href="signup.html">Sign Up</a>
+                                    <a href="{{ route('register') }}">Sign Up</a>
                                 </div>
                             </div>
                         </form>
@@ -198,4 +125,4 @@
 </body>
 
 
-</html> --}}
+</html>

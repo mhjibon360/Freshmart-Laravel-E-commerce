@@ -28,7 +28,15 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        $message = notyf()->success('Welcome back, ' . $request->user()->name . '!');
+
+        if ($request->user()->role === 'admin') {
+            $message;
+            return redirect()->intended(route('admin.dashboard'));
+        } else {
+            $message;
+            return redirect()->intended(route('dashboard'));
+        }
     }
 
     /**
@@ -42,6 +50,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        notyf()->warning('You have been logged out successfully.');
+        return redirect('/login');
     }
 }

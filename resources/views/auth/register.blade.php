@@ -1,56 +1,3 @@
-{{-- <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
-
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
-        </div>
-
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
-
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
-
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout> --}}
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -59,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta content="Codescandy" name="author" />
-    <title>Sign up eCommerce HTML Template - FreshCart</title>
+    <title>Sign up eCommerce - FreshCart</title>
     <!-- Favicon icon-->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('frontend/assets/images/favicon/favicon.ico') }}" />
 
@@ -70,31 +17,7 @@
 
     <!-- Theme CSS -->
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/theme.min.css') }}" />
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-M8S4MT3EYG"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag("js", new Date());
-
-        gtag("config", "G-M8S4MT3EYG");
-    </script>
-    <script type="text/javascript">
-        (function(c, l, a, r, i, t, y) {
-            c[a] =
-                c[a] ||
-                function() {
-                    (c[a].q = c[a].q || []).push(arguments);
-                };
-            t = l.createElement(r);
-            t.async = 1;
-            t.src = "https://www.clarity.ms/tag/" + i;
-            y = l.getElementsByTagName(r)[0];
-            y.parentNode.insertBefore(t, y);
-        })(window, document, "clarity", "script", "kuc8w5o9nt");
-    </script>
 </head>
 
 <body>
@@ -102,13 +25,13 @@
     <div class="border-bottom shadow-sm">
         <nav class="navbar navbar-light py-2">
             <div class="container justify-content-center justify-content-lg-between">
-                <a class="navbar-brand" href="../index.html">
+                <a class="navbar-brand" href="{{ route('home.index') }}">
                     <img src="{{ asset('frontend') }}/assets/images/logo/freshcart-logo.svg" alt=""
                         class="d-inline-block align-text-top" />
                 </a>
                 <span class="navbar-text">
                     Already have an account?
-                    <a href="signin.html">Sign in</a>
+                    <a href="{{ route('login') }}">Sign in</a>
                 </span>
             </div>
         </nav>
@@ -134,29 +57,31 @@
                             <p>Welcome to FreshCart! Enter your email to get started.</p>
                         </div>
                         <!-- form -->
-                        <form class="needs-validation" novalidate>
+                        <form class="needs-validation" novalidate method="POST" action="{{ route('register') }}">
+                            @csrf
+                            @method('POST')
                             <div class="row g-3">
                                 <!-- col -->
                                 <div class="col">
                                     <!-- input -->
                                     <label for="formSignupfname" class="form-label visually-hidden">First Name</label>
-                                    <input type="text" class="form-control" id="formSignupfname"
-                                        placeholder="First Name" required />
+                                    <input type="text" name="name" value="{{ old('name') }}"
+                                        class="form-control" id="formSignupfname" placeholder="First Name" required />
                                     <div class="invalid-feedback">Please enter first name.</div>
                                 </div>
                                 <div class="col">
                                     <!-- input -->
-                                    <label for="formSignuplname" class="form-label visually-hidden">Last Name</label>
-                                    <input type="text" class="form-control" id="formSignuplname"
-                                        placeholder="First Name" required />
-                                    <div class="invalid-feedback">Please enter last name.</div>
+                                    <label for="formSignuplname" class="form-label visually-hidden">Username</label>
+                                    <input type="text" name="username" value="{{ old('username') }}"
+                                        class="form-control" id="formSignuplname" placeholder="Username" required />
+                                    <div class="invalid-feedback">Please enter username.</div>
                                 </div>
                                 <div class="col-12">
                                     <!-- input -->
                                     <label for="formSignupEmail" class="form-label visually-hidden">Email
                                         address</label>
-                                    <input type="email" class="form-control" id="formSignupEmail" placeholder="Email"
-                                        required />
+                                    <input type="email" name="email" value="{{ old('email') }}"
+                                        class="form-control" id="formSignupEmail" placeholder="Email" required />
                                     <div class="invalid-feedback">Please enter email.</div>
                                 </div>
                                 <div class="col-12">
@@ -164,13 +89,14 @@
                                         <label for="formSignupPassword"
                                             class="form-label visually-hidden">Password</label>
                                         <div class="password-field position-relative">
-                                            <input type="password" class="form-control fakePassword"
+                                            <input type="password" name="password" class="form-control fakePassword"
                                                 id="formSignupPassword" placeholder="*****" required />
                                             <span><i class="bi bi-eye-slash passwordToggler"></i></span>
                                             <div class="invalid-feedback">Please enter password.</div>
                                         </div>
                                     </div>
                                 </div>
+                               
                                 <!-- btn -->
                                 <div class="col-12 d-grid"><button type="submit"
                                         class="btn btn-primary">Register</button></div>
@@ -179,9 +105,9 @@
                                 <p>
                                     <small>
                                         By continuing, you agree to our
-                                        <a href="#!">Terms of Service</a>
+                                        <a href="javascript::void();">Terms of Service</a>
                                         &
-                                        <a href="#!">Privacy Policy</a>
+                                        <a href="javascript::void();">Privacy Policy</a>
                                     </small>
                                 </p>
                             </div>

@@ -233,9 +233,9 @@ class UserSeeder extends Seeder
             ],
             // 18
             [
-                'name' => 'Mitu Ahmed',
-                'email' => 'mitu.ahmed@hotmail.com',
-                'username' => 'mituahmed',
+                'name' => 'Ritu Ahmed',
+                'email' => 'ritu.ahmed@hotmail.com',
+                'username' => 'rituahmed',
                 'phone' => '01812345695',
                 'password' => Hash::make('111'),
                 'address' => 'Mymensingh, Valuka',
