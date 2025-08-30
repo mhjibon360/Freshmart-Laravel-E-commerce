@@ -56,4 +56,45 @@ class FrontendController extends Controller
     {
         return view('frontend.pages.checkout');
     }
+
+    /**
+     * Show the category page.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function category()
+    {
+        return view('frontend.pages.category');
+    }
+
+    /**
+     * Show the blog page.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function blog()
+    {
+        return view('frontend.pages.blog');
+    }
+
+    /**
+     * Show the blog details page.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function blogdetails()
+    {
+        return view('frontend.pages.blog-details');
+    }
+
+    /**
+     * Show the blog category page.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function blogcategory()
+    {
+        return view('frontend.pages.blog-category');
+    }
+
 }
