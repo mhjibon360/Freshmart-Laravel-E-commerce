@@ -7,8 +7,33 @@ use Illuminate\Http\Request;
 
 class FrontendController extends Controller
 {
+    /**
+     * Show the home page.
+     *
+     * @return \Illuminate\View\View
+     */
     public function index()
     {
         return view('frontend.pages.index');
+    }
+
+    /**
+     * Show the product details page.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function productDetails()
+    {
+        return view('frontend.pages.product-details');
+    }
+
+    /**
+     * Show the shop page.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function shop()
+    {
+        return view('frontend.pages.shop');
     }
 }
