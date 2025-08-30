@@ -13,10 +13,8 @@ return new class extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->bigInteger('product_id');
-            $table->foreign('product_id')->references('id')->on('Products')->onDelete('cascade');
+            $table->string('user_id')->nullable();
+            $table->string('product_id')->nullable();
             $table->longText('message');
             $table->enum('status', ["0", "1"])->nullable()->default('0')->comment('0=pending,1=approved');
             $table->timestamps();

@@ -13,15 +13,11 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('division_id');
-            $table->foreign('division_id')->references('id')->on('divisions')->onDelete('cascade');
-            $table->string('district_id');
-            $table->foreign('district_id')->references('id')->on('districts')->onDelete('cascade');
-            $table->string('upazila_id');
-            $table->foreign('upazila_id')->references('id')->on('upazilas')->onDelete('cascade');
-            $table->bigInteger('union_id');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->string('division_id')->nullable();
+            $table->foreignId('district_id')->nullable();
+            $table->foreignId('upazila_id')->nullable();
+            $table->foreignId('union_id')->nullable();
             $table->string('name');
             $table->string('email');
             $table->string('phone');

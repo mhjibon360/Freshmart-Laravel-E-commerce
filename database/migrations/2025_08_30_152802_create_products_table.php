@@ -13,26 +13,23 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->bigInteger('category_id');
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
-            $table->bigInteger('subcategory_id');
-            $table->foreign('subcategory_id')->references('id')->on('subcategories')->onDelete('cascade');
+            $table->string('user_id')->nullable();
+            $table->string('category_id')->nullable();
+            $table->string('subcategory_id')->nullable();
             $table->string('product_name');
             $table->string('thumbnail');
-            $table->string('price');
-            $table->string('discount_price')->nullable();
+            $table->decimal('price', 10, 2);
+            $table->decimal('discount_price', 10, 2)->nullable();
+            $table->unsignedInteger('quantity')->nullable();
             $table->string('size')->nullable();
             $table->string('color')->nullable();
-            $table->string('quantity')->nullable();
-            $table->string('product_code');
+            $table->string('product_code')->unique();
             $table->longText('details')->nullable();
             $table->longText('informations')->nullable();
-            $table->enum('popular_products', ["1", "0"]);
-            $table->enum('best_sells', ["1", "0"]);
-            $table->enum('type', ["hot", "sale"])->nullable();
-            $table->enum('status', ["1", "0"]);
+            $table->boolean('popular_products')->default(false);
+            $table->boolean('best_sells')->default(false);
+            $table->enum('type', ['hot', 'sale'])->nullable();
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }

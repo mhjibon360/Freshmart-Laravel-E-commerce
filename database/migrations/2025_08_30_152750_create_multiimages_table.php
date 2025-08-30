@@ -13,9 +13,8 @@ return new class extends Migration
     {
         Schema::create('multiimages', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('product_id');
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
-            $table->bigInteger('photo_name');
+            $table->string('product_id')->nullable();
+            $table->string('photo_name');
             $table->timestamps();
         });
     }

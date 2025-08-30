@@ -13,10 +13,8 @@ return new class extends Migration
     {
         Schema::create('compares', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->bigInteger('product_id');
-            $table->foreign('product_id')->references('id')->on('Products')->onDelete('cascade');
+            $table->string('user_id')->nullable();
+            $table->string('product_id')->nullable();
             $table->timestamps();
         });
     }

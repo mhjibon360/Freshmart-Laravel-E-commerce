@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('category_name');
-            $table->bigInteger('category_slug');
-            $table->bigInteger('category_image');
+            $table->string('category_slug');
+            $table->string('category_image');
             $table->enum('featured_category', ["1", "0"])->default("0");
             $table->enum('footer_category', ["1", "0"])->default("0");
             $table->timestamps();
