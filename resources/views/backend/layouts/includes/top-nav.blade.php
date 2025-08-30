@@ -78,7 +78,7 @@
                                              </div>
                                          </a>
                                      </li>
-                                     
+
                                  </ul>
                              </div>
                              <div class="border-top px-5 py-4 text-center">
@@ -88,7 +88,7 @@
                      </li>
                      <li class="dropdown ms-4">
                          <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                             <img src="{{ isset(Auth::user()->photo) ? Auth::user()->photo : Avatar::create(Auth::user()->name)->toBase64() }}" alt=""
+                             <img src="{{ isset(Auth::user()->photo) ? asset(Auth::user()->photo) : Avatar::create(Auth::user()->name)->toBase64() }}" alt=""
                                  class="avatar avatar-md rounded-circle" />
                          </a>
 
@@ -104,11 +104,11 @@
                                  </li>
 
                                  <li>
-                                     <a class="dropdown-item" href="#!">Profile</a>
+                                     <a class="dropdown-item" href="{{ route('admin.profile') }}">Profile</a>
                                  </li>
 
                                  <li>
-                                     <a class="dropdown-item" href="#!">Password</a>
+                                     <a class="dropdown-item" href="{{ route('admin.profile') }}">Password</a>
                                  </li>
                              </ul>
                              <div class="border-top px-5 py-3">

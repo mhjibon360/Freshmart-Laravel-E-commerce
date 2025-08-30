@@ -8,5 +8,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     Route::controller(BackendController::class)->group(function () {
         Route::get('/dashboard', 'index')->name('dashboard');
+        Route::get('/profile', 'profile')->name('profile');
+        Route::put('/update/profile', 'updateProfile')->name('update.profile');
+        Route::put('/update/password', 'updatepassword')->name('update.password');
     });
 });
