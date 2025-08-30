@@ -16,6 +16,8 @@ Route::controller(FrontendController::class)->group(function () {
     Route::get('/blog', 'blog')->name('blog');
     Route::get('/blog/details', 'blogdetails')->name('blog.details');
     Route::get('/blog/category', 'blogcategory')->name('blog.category');
+    Route::get('/wishlist', 'wishlist')->name('wishlist');
+    Route::get('/compare', 'compare')->name('compare');
 });
 
 

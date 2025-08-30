@@ -97,4 +97,23 @@ class FrontendController extends Controller
         return view('frontend.pages.blog-category');
     }
 
+    /**
+     * Show the wishlist page.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function wishlist()
+    {
+        return view('frontend.pages.wishlist');
+    }
+
+    /**
+     * Show the compare page.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function compare()
+    {
+        return view('frontend.pages.compare');
+    }
 }
