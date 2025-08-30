@@ -1,0 +1,636 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\User;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+class UserSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+         $users = [
+            // 01('super admin')
+            [
+                'name' => 'Mehedi Hassan Jibon',
+                'email' => 'mjjibon114@gmail.com',
+                'username' => 'jbonbd360',
+                'phone' => '01873593399',
+                'password' => Hash::make('111'),
+                'address' => 'Rangpur,Paglapir-2',
+                'role' => 'admin',
+                'status' => '1',
+                'created_at' => now(),
+            ],
+            // 1
+            [
+                'name' => 'Fahim Rahman',
+                'email' => 'fahim.rahman@gmail.com',
+                'username' => 'fahimrahman',
+                'phone' => '01712345678',
+                'password' => Hash::make('111'),
+                'address' => 'Dhaka, Mirpur-10',
+                'role' => 'user',
+                'status' => '1',
+                'created_at' => now(),
+            ],
+            // 2
+            [
+                'name' => 'Sonia Akter',
+                'email' => 'sonia.akter@yahoo.com',
+                'username' => 'soniaakter',
+                'phone' => '01912345679',
+                'password' => Hash::make('111'),
+                'address' => 'Chittagong, Agrabad',
+                'role' => 'user',
+                'status' => '1',
+                'created_at' => now(),
+            ],
+            // 3
+            [
+                'name' => 'Mahmud Hasan',
+                'email' => 'mahmud.hasan@hotmail.com',
+                'username' => 'mahmudhasan',
+                'phone' => '01812345680',
+                'password' => Hash::make('111'),
+                'address' => 'Khulna, Sonadanga',
+                'role' => 'user',
+                'status' => '0',
+                'created_at' => now(),
+            ],
+            // 4
+            [
+                'name' => 'Nusrat Jahan',
+                'email' => 'nusratjahan@gmail.com',
+                'username' => 'nusratj',
+                'phone' => '01612345681',
+                'password' => Hash::make('111'),
+                'address' => 'Sylhet, Zindabazar',
+                'role' => 'user',
+                'status' => '1',
+                'created_at' => now(),
+            ],
+            // 5
+            [
+                'name' => 'Rahim Chowdhury',
+                'email' => 'rahim.chowdhury@live.com',
+                'username' => 'rahimchowdhury',
+                'phone' => '01712345682',
+                'password' => Hash::make('111'),
+                'address' => 'Rajshahi, Boalia',
+                'role' => 'user',
+                'status' => '1',
+                'created_at' => now(),
+            ],
+            // 6
+            [
+                'name' => 'Jannat Akter',
+                'email' => 'jannat.akter@yahoo.com',
+                'username' => 'jannatakter',
+                'phone' => '01512345683',
+                'password' => Hash::make('111'),
+                'address' => 'Dhaka, Gulshan-2',
+                'role' => 'user',
+                'status' => '0',
+                'created_at' => now(),
+            ],
+            // 7
+            [
+                'name' => 'Sakib Ahmed',
+                'email' => 'sakib.ahmed@gmail.com',
+                'username' => 'sakibahmed',
+                'phone' => '01712345684',
+                'password' => Hash::make('111'),
+                'address' => 'Barisal, Sadar Road',
+                'role' => 'user',
+                'status' => '1',
+                'created_at' => now(),
+            ],
+            // 8
+            [
+                'name' => 'Tasnim Islam',
+                'email' => 'tasnim.islam@hotmail.com',
+                'username' => 'tasnimislam',
+                'phone' => '01812345685',
+                'password' => Hash::make('111'),
+                'address' => 'Rangpur, Kotwali',
+                'role' => 'user',
+                'status' => '1',
+                'created_at' => now(),
+            ],
+            // 9
+            [
+                'name' => 'Rana Mondal',
+                'email' => 'rana.mondal@gmail.com',
+                'username' => 'ranam1',
+                'phone' => '01912345686',
+                'password' => Hash::make('111'),
+                'address' => 'Mymensingh, Ganginarpar',
+                'role' => 'user',
+                'status' => '0',
+                'created_at' => now(),
+            ],
+            // 10
+            [
+                'name' => 'Farhana Akter',
+                'email' => 'farhana.akter@live.com',
+                'username' => 'farhanaakter',
+                'phone' => '01612345687',
+                'password' => Hash::make('111'),
+                'address' => 'Dhaka, Uttara',
+                'role' => 'user',
+                'status' => '1',
+                'created_at' => now(),
+            ],
+            // 11
+            [
+                'name' => 'Shakil Khan',
+                'email' => 'shakil.khan@gmail.com',
+                'username' => 'shakilk',
+                'phone' => '01712345688',
+                'password' => Hash::make('111'),
+                'address' => 'Chittagong, Patiya',
+                'role' => 'user',
+                'status' => '1',
+                'created_at' => now(),
+            ],
+            // 12
+            [
+                'name' => 'Tania Rahman',
+                'email' => 'tania.rahman@yahoo.com',
+                'username' => 'taniarahman',
+                'phone' => '01812345689',
+                'password' => Hash::make('111'),
+                'address' => 'Khulna, Daulatpur',
+                'role' => 'user',
+                'status' => '1',
+                'created_at' => now(),
+            ],
+            // 13
+            [
+                'name' => 'Imran Hossain',
+                'email' => 'imran.hossain@hotmail.com',
+                'username' => 'imranh',
+                'phone' => '01912345690',
+                'password' => Hash::make('111'),
+                'address' => 'Sylhet, Ambarkhana',
+                'role' => 'user',
+                'status' => '0',
+                'created_at' => now(),
+            ],
+            // 14
+            [
+                'name' => 'Sumi Akter',
+                'email' => 'sumi.akter@gmail.com',
+                'username' => 'sumiak',
+                'phone' => '01612345691',
+                'password' => Hash::make('111'),
+                'address' => 'Rajshahi, Laxmipur',
+                'role' => 'user',
+                'status' => '1',
+                'created_at' => now(),
+            ],
+            // 15
+            [
+                'name' => 'Moinul Islam',
+                'email' => 'moinul.islam@live.com',
+                'username' => 'moinul123',
+                'phone' => '01712345692',
+                'password' => Hash::make('111'),
+                'address' => 'Dhaka, Dhanmondi',
+                'role' => 'user',
+                'status' => '1',
+                'created_at' => now(),
+            ],
+            // 16
+            [
+                'name' => 'Jahanara Begum',
+                'email' => 'jahanara.begum@yahoo.com',
+                'username' => 'jahanarab',
+                'phone' => '01512345693',
+                'password' => Hash::make('111'),
+                'address' => 'Barisal, Rupatali',
+                'role' => 'user',
+                'status' => '0',
+                'created_at' => now(),
+            ],
+            // 17
+            [
+                'name' => 'Arefin Shuvo',
+                'email' => 'arefin.shuvo@gmail.com',
+                'username' => 'arefinshuvo',
+                'phone' => '01712345694',
+                'password' => Hash::make('111'),
+                'address' => 'Rangpur, Kawnia',
+                'role' => 'user',
+                'status' => '1',
+                'created_at' => now(),
+            ],
+            // 18
+            [
+                'name' => 'Mitu Ahmed',
+                'email' => 'mitu.ahmed@hotmail.com',
+                'username' => 'mituahmed',
+                'phone' => '01812345695',
+                'password' => Hash::make('111'),
+                'address' => 'Mymensingh, Valuka',
+                'role' => 'user',
+                'status' => '1',
+                'created_at' => now(),
+            ],
+            // 19
+            [
+                'name' => 'Kamal Hossain',
+                'email' => 'kamal.hossain@gmail.com',
+                'username' => 'kamalhossain',
+                'phone' => '01912345696',
+                'password' => Hash::make('111'),
+                'address' => 'Dhaka, Jatrabari',
+                'role' => 'user',
+                'status' => '0',
+                'created_at' => now(),
+            ],
+            // 20
+            [
+                'name' => 'Roksana Parvin',
+                'email' => 'roksana.parvin@live.com',
+                'username' => 'roksanap',
+                'phone' => '01612345697',
+                'password' => Hash::make('111'),
+                'address' => 'Chittagong, Anowara',
+                'role' => 'user',
+                'status' => '1',
+                'created_at' => now(),
+            ],
+            // 21
+            [
+                'name' => 'Rashedul Islam',
+                'email' => 'rashedul.islam@gmail.com',
+                'username' => 'rashedul',
+                'phone' => '01712345698',
+                'password' => Hash::make('111'),
+                'address' => 'Khulna, Bagerhat',
+                'role' => 'user',
+                'status' => '1',
+                'created_at' => now(),
+            ],
+            // 22
+            [
+                'name' => 'Shanta Islam',
+                'email' => 'shanta.islam@yahoo.com',
+                'username' => 'shantaislam',
+                'phone' => '01812345699',
+                'password' => Hash::make('111'),
+                'address' => 'Sylhet, Jaintapur',
+                'role' => 'user',
+                'status' => '0',
+                'created_at' => now(),
+            ],
+            // 23
+            [
+                'name' => 'Asif Chowdhury',
+                'email' => 'asif.chowdhury@hotmail.com',
+                'username' => 'asifc',
+                'phone' => '01912345700',
+                'password' => Hash::make('111'),
+                'address' => 'Rajshahi, Puthia',
+                'role' => 'user',
+                'status' => '1',
+                'created_at' => now(),
+            ],
+            // 24
+            [
+                'name' => 'Laboni Akter',
+                'email' => 'laboni.akter@gmail.com',
+                'username' => 'laboniakter',
+                'phone' => '01612345701',
+                'password' => Hash::make('111'),
+                'address' => 'Dhaka, Tejgaon',
+                'role' => 'user',
+                'status' => '1',
+                'created_at' => now(),
+            ],
+            // 25
+            [
+                'name' => 'Naimul Islam',
+                'email' => 'naimul.islam@live.com',
+                'username' => 'naimulislam',
+                'phone' => '01712345702',
+                'password' => Hash::make('111'),
+                'address' => 'Barisal, Bhola',
+                'role' => 'user',
+                'status' => '0',
+                'created_at' => now(),
+            ],
+            // 26
+            [
+                'name' => 'Sadia Afrin',
+                'email' => 'sadia.afrin@yahoo.com',
+                'username' => 'sadiaafrin',
+                'phone' => '01512345703',
+                'password' => Hash::make('111'),
+                'address' => 'Rangpur, Pirganj',
+                'role' => 'user',
+                'status' => '1',
+                'created_at' => now(),
+            ],
+            // 27
+            [
+                'name' => 'Abir Hossain',
+                'email' => 'abir.hossain@gmail.com',
+                'username' => 'abirhossain',
+                'phone' => '01812345704',
+                'password' => Hash::make('111'),
+                'address' => 'Mymensingh, Bhaluka',
+                'role' => 'user',
+                'status' => '1',
+                'created_at' => now(),
+            ],
+            // 28
+            [
+                'name' => 'Priya Das',
+                'email' => 'priya.das@hotmail.com',
+                'username' => 'priyadas',
+                'phone' => '01912345705',
+                'password' => Hash::make('111'),
+                'address' => 'Dhaka, Keraniganj',
+                'role' => 'user',
+                'status' => '0',
+                'created_at' => now(),
+            ],
+            // 29
+            [
+                'name' => 'Sagor Ahmed',
+                'email' => 'sagor.ahmed@gmail.com',
+                'username' => 'sagorahmed',
+                'phone' => '01612345706',
+                'password' => Hash::make('111'),
+                'address' => 'Chittagong, Hathazari',
+                'role' => 'user',
+                'status' => '1',
+                'created_at' => now(),
+            ],
+            // 30
+            [
+                'name' => 'Sumona Akter',
+                'email' => 'sumona.akter@live.com',
+                'username' => 'sumonaakter',
+                'phone' => '01712345707',
+                'password' => Hash::make('111'),
+                'address' => 'Khulna, Kushtia',
+                'role' => 'user',
+                'status' => '1',
+                'created_at' => now(),
+            ],
+            // 31
+            [
+                'name' => 'Tareq Hasan',
+                'email' => 'tareq.hasan@yahoo.com',
+                'username' => 'tareqhasan',
+                'phone' => '01812345708',
+                'password' => Hash::make('111'),
+                'address' => 'Sylhet, Sunamganj',
+                'role' => 'user',
+                'status' => '0',
+                'created_at' => now(),
+            ],
+            // 32
+            [
+                'name' => 'Bithi Mondal',
+                'email' => 'bithi.mondal@gmail.com',
+                'username' => 'bithimondal',
+                'phone' => '01912345709',
+                'password' => Hash::make('111'),
+                'address' => 'Rajshahi, Natore',
+                'role' => 'user',
+                'status' => '1',
+                'created_at' => now(),
+            ],
+            // 33
+            [
+                'name' => 'Shakib Alom',
+                'email' => 'shakib.alom@hotmail.com',
+                'username' => 'shakibal',
+                'phone' => '01612345710',
+                'password' => Hash::make('111'),
+                'address' => 'Dhaka, Mirpur-1',
+                'role' => 'user',
+                'status' => '1',
+                'created_at' => now(),
+            ],
+            // 34
+            [
+                'name' => 'Meher Afroz',
+                'email' => 'meher.afroz@gmail.com',
+                'username' => 'meherafroz',
+                'phone' => '01712345711',
+                'password' => Hash::make('111'),
+                'address' => 'Barisal, Pirojpur',
+                'role' => 'user',
+                'status' => '0',
+                'created_at' => now(),
+            ],
+            // 35
+            [
+                'name' => 'Nayeem Hasan',
+                'email' => 'nayeem.hasan@live.com',
+                'username' => 'nayeemhasan',
+                'phone' => '01812345712',
+                'password' => Hash::make('111'),
+                'address' => 'Rangpur, Kurigram',
+                'role' => 'user',
+                'status' => '1',
+                'created_at' => now(),
+            ],
+            // 36
+            [
+                'name' => 'Rifat Hossain',
+                'email' => 'rifat.hossain@yahoo.com',
+                'username' => 'rifathossain',
+                'phone' => '01912345713',
+                'password' => Hash::make('111'),
+                'address' => 'Mymensingh, Netrokona',
+                'role' => 'user',
+                'status' => '1',
+                'created_at' => now(),
+            ],
+            // 37
+            [
+                'name' => 'Adiba Islam',
+                'email' => 'adiba.islam@gmail.com',
+                'username' => 'adibaislam',
+                'phone' => '01612345714',
+                'password' => Hash::make('111'),
+                'address' => 'Dhaka, Savar',
+                'role' => 'user',
+                'status' => '0',
+                'created_at' => now(),
+            ],
+            // 38
+            [
+                'name' => 'Jahidul Islam',
+                'email' => 'jahidul.islam@hotmail.com',
+                'username' => 'jahidulislam',
+                'phone' => '01712345715',
+                'password' => Hash::make('111'),
+                'address' => 'Chittagong, Sitakunda',
+                'role' => 'user',
+                'status' => '1',
+                'created_at' => now(),
+            ],
+            // 39
+            [
+                'name' => 'Faria Kabir',
+                'email' => 'faria.kabir@live.com',
+                'username' => 'fariakabir',
+                'phone' => '01812345716',
+                'password' => Hash::make('111'),
+                'address' => 'Khulna, Jashore',
+                'role' => 'user',
+                'status' => '1',
+                'created_at' => now(),
+            ],
+            // 40
+            [
+                'name' => 'Tarek Islam',
+                'email' => 'tarek.islam@gmail.com',
+                'username' => 'tarekislam',
+                'phone' => '01912345717',
+                'password' => Hash::make('111'),
+                'address' => 'Sylhet, Habiganj',
+                'role' => 'user',
+                'status' => '0',
+                'created_at' => now(),
+            ],
+            // 41
+            [
+                'name' => 'Sajid Khan',
+                'email' => 'sajid.khan@yahoo.com',
+                'username' => 'sajidkhan',
+                'phone' => '01612345718',
+                'password' => Hash::make('111'),
+                'address' => 'Rajshahi, Chapainawabganj',
+                'role' => 'user',
+                'status' => '1',
+                'created_at' => now(),
+            ],
+            // 42
+            [
+                'name' => 'Munira Akhter',
+                'email' => 'munira.akhter@hotmail.com',
+                'username' => 'muniraakhter',
+                'phone' => '01712345719',
+                'password' => Hash::make('111'),
+                'address' => 'Dhaka, Keraniganj',
+                'role' => 'user',
+                'status' => '1',
+                'created_at' => now(),
+            ],
+            // 43
+            [
+                'name' => 'Polash Paul',
+                'email' => 'polash.paul@gmail.com',
+                'username' => 'polashpaul',
+                'phone' => '01812345720',
+                'password' => Hash::make('111'),
+                'address' => 'Barisal, Patuakhali',
+                'role' => 'user',
+                'status' => '0',
+                'created_at' => now(),
+            ],
+            // 44
+            [
+                'name' => 'Sumon Das',
+                'email' => 'sumon.das@live.com',
+                'username' => 'sumondas',
+                'phone' => '01912345721',
+                'password' => Hash::make('111'),
+                'address' => 'Rangpur, Gaibandha',
+                'role' => 'user',
+                'status' => '1',
+                'created_at' => now(),
+            ],
+            // 45
+            [
+                'name' => 'Foysal Mahmud',
+                'email' => 'foysal.mahmud@yahoo.com',
+                'username' => 'foysalmah',
+                'phone' => '01612345722',
+                'password' => Hash::make('111'),
+                'address' => 'Mymensingh, Tangail',
+                'role' => 'user',
+                'status' => '1',
+                'created_at' => now(),
+            ],
+            // 46
+            [
+                'name' => 'Ishrat Jahan',
+                'email' => 'ishrat.jahan@gmail.com',
+                'username' => 'ishratjahan',
+                'phone' => '01712345723',
+                'password' => Hash::make('111'),
+                'address' => 'Dhaka, Motijheel',
+                'role' => 'user',
+                'status' => '0',
+                'created_at' => now(),
+            ],
+            // 47
+            [
+                'name' => 'Rakib Hossain',
+                'email' => 'rakib.hossain@hotmail.com',
+                'username' => 'rakibhossain',
+                'phone' => '01812345724',
+                'password' => Hash::make('111'),
+                'address' => 'Chittagong, Cox\'s Bazar',
+                'role' => 'user',
+                'status' => '1',
+                'created_at' => now(),
+            ],
+            // 48
+            [
+                'name' => 'Afia Sultana',
+                'email' => 'afia.sultana@gmail.com',
+                'username' => 'afiasultana',
+                'phone' => '01912345725',
+                'password' => Hash::make('111'),
+                'address' => 'Khulna, Satkhira',
+                'role' => 'user',
+                'status' => '1',
+                'created_at' => now(),
+            ],
+            // 49
+            [
+                'name' => 'Arefin Hossain',
+                'email' => 'arefin.hossain@live.com',
+                'username' => 'arefinh',
+                'phone' => '01612345726',
+                'password' => Hash::make('111'),
+                'address' => 'Sylhet, Maulvibazar',
+                'role' => 'user',
+                'status' => '0',
+                'created_at' => now(),
+            ],
+            // 50
+            [
+                'name' => 'Ruma Akter',
+                'email' => 'ruma.akter@yahoo.com',
+                'username' => 'rumaakter',
+                'phone' => '01712345727',
+                'password' => Hash::make('111'),
+                'address' => 'Rajshahi, Sirajganj',
+                'role' => 'user',
+                'status' => '1',
+                'created_at' => now(),
+            ],
+        ];
+
+        foreach ($users as $user) {
+            User::create($user);
+        }
+    }
+}
