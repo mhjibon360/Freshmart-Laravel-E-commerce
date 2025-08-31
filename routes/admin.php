@@ -30,6 +30,9 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     // ***************************************** website *******************
     // banner advertisement all routes
     Route::resource('/advertisement', AdsController::class);
+    Route::controller(AdsController::class)->group(function () {
+        Route::post('/advertisement-status', 'changeStatus')->name('advertisement.status');
+    });
     //download controller all routes
     Route::resource('/download', DownloadController::class);
     //payment controller all routes
@@ -40,7 +43,7 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     Route::resource('/services', ServicesController::class);
     //slider controller all routes
     Route::resource('/slider', SliderController::class);
-     Route::controller(SliderController::class)->group(function () {
+    Route::controller(SliderController::class)->group(function () {
         Route::post('/slider-status', 'changeStatus')->name('slider.status');
     });
 

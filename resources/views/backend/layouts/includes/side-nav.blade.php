@@ -27,6 +27,14 @@
                      </a>
                  </li>
                  <li class="nav-item">
+                     <a class="nav-link " href="{{ route('admin.advertisement.index') }}">
+                         <div class="d-flex align-items-center">
+                             <span class="nav-link-icon"><i class="bi bi-list-task"></i></span>
+                             <span class="nav-link-text">Manage Advertisement</span>
+                         </div>
+                     </a>
+                 </li>
+                 <li class="nav-item">
                      <a class="nav-link " href="products.html">
                          <div class="d-flex align-items-center">
                              <span class="nav-link-icon"><i class="bi bi-cart"></i></span>
