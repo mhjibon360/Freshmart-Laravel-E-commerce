@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
+use App\Models\Slider;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class SliderController extends Controller
 {
@@ -12,7 +13,8 @@ class SliderController extends Controller
      */
     public function index()
     {
-        //
+        $allslider = Slider::latest()->get();
+        return view('backend.pages.slider.index', compact('allslider'));
     }
 
     /**
@@ -20,7 +22,7 @@ class SliderController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.pages.slider.create');
     }
 
     /**
@@ -28,7 +30,35 @@ class SliderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate the request
+        $request->validate([
+            'heading' => 'required',
+            'title' => 'required',
+            'details' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        // Handle the image upload
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = hexdec(uniqid()) . $file->getClientOriginalName();
+            $photourl = "upload/slider/" . $filename;
+            $file->move(public_path('upload/slider/'), $filename);
+        }
+
+        // Create the slider
+        Slider::create([
+            'title' => $request->title,
+            'heading' => $request->heading,
+            'details' => $request->details,
+            'image' => $photourl,
+            'status' => $request->status,
+            'created_at' => now(),
+        ]);
+
+        // Show a success message
+        notyf()->success('Slider created successfully.');
+        return back();
     }
 
     /**
@@ -44,7 +74,8 @@ class SliderController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $slider = Slider::findOrFail($id);
+        return view('backend.pages.slider.edit', compact('slider'));
     }
 
     /**
@@ -52,7 +83,42 @@ class SliderController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // Find the slider
+        $slider = Slider::findOrFail($id);
+
+        // Validate the request
+        $request->validate([
+            'heading' => 'required',
+            'title' => 'required',
+            'details' => 'required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        // Handle the image upload
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = hexdec(uniqid()) . $file->getClientOriginalName();
+            $photourl = "upload/slider/" . $filename;
+            $file->move(public_path('upload/slider/'), $filename);
+            // Update the slider's image
+            if (file_exists($slider->image)) {
+                unlink($slider->image);
+            }
+        }
+
+        // Create the slider
+        $slider->update([
+            'title' => $request->title,
+            'heading' => $request->heading,
+            'details' => $request->details,
+            'image' => $photourl,
+            'status' => $request->status,
+            'updated_at' => now(),
+        ]);
+
+        // Show a success message
+        notyf()->info('Slider updated successfully.');
+        return to_route('admin.slider.index');
     }
 
     /**
@@ -60,6 +126,18 @@ class SliderController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // Find the slider
+        $slider = Slider::findOrFail($id);
+
+        // Update the slider's image
+        if (file_exists($slider->image)) {
+            unlink($slider->image);
+        }
+        // Delete the slider
+        $slider->delete();
+
+        // Show a success message
+        notyf()->warning('Slider deleted successfully.');
+        return to_route('admin.slider.index');
     }
 }

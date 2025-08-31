@@ -19,6 +19,14 @@
                      <span class="nav-label">Store Managements</span>
                  </li>
                  <li class="nav-item">
+                     <a class="nav-link " href="{{ route('admin.slider.index') }}">
+                         <div class="d-flex align-items-center">
+                             <span class="nav-link-icon"><i class="bi bi-list-task"></i></span>
+                             <span class="nav-link-text">Manage Slider</span>
+                         </div>
+                     </a>
+                 </li>
+                 <li class="nav-item">
                      <a class="nav-link " href="products.html">
                          <div class="d-flex align-items-center">
                              <span class="nav-link-icon"><i class="bi bi-cart"></i></span>
@@ -26,14 +34,7 @@
                          </div>
                      </a>
                  </li>
-                 <li class="nav-item">
-                     <a class="nav-link " href="categories.html">
-                         <div class="d-flex align-items-center">
-                             <span class="nav-link-icon"><i class="bi bi-list-task"></i></span>
-                             <span class="nav-link-text">Categories</span>
-                         </div>
-                     </a>
-                 </li>
+
                  <li class="nav-item">
                      <a class="nav-link  collapsed " href="#" data-bs-toggle="collapse"
                          data-bs-target="#navCategoriesOrders" aria-expanded="false"
