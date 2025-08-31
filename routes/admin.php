@@ -77,7 +77,6 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
         Route::get('/settings', 'index')->name('settings');
         Route::get('/general/settings', 'generalSettings')->name('general.settings');
         Route::put('/general/settings/update', 'generalSettingsUpdate')->name('general.settings.update');
-
         Route::get('/seo/settings', 'seoSettings')->name('seo.settings');
         Route::put('/seo/settings/update', 'seoSettingsUpdate')->name('seo.settings.update');
     });
