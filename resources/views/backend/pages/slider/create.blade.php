@@ -36,11 +36,11 @@
                     <div class="card mb-6 shadow border-0">
                         <!-- card body -->
                         <div class="card-body p-6">
-                            <h4 class="mb-5 h5">Category Image</h4>
+                            <h4 class="mb-5 h5">Slider Image</h4>
                             <div class="mb-4 d-flex">
                                 <div class="position-relative">
                                     <img class="image icon-shape icon-xxxl bg-light rounded-4"
-                                        src="../assets/images/icons/bakery.svg" alt="Image" />
+                                        src="{{ asset('backend') }}/assets/images/icons/bakery.svg" alt="Image" />
 
                                     <div class="file-upload position-absolute end-0 top-0 mt-n2 me-n1">
                                         <input type="file" name="image" class="file-input" />
@@ -58,7 +58,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <h4 class="mb-4 h5 mt-5">Category Information</h4>
+                            <h4 class="mb-4 h5 mt-5">Slider Information</h4>
 
                             <div class="row">
                                 <!-- input -->
