@@ -40,6 +40,9 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     Route::resource('/services', ServicesController::class);
     //slider controller all routes
     Route::resource('/slider', SliderController::class);
+     Route::controller(SliderController::class)->group(function () {
+        Route::post('/slider-status', 'changeStatus')->name('slider.status');
+    });
 
 
     // *****************************************product and product attributes *******************

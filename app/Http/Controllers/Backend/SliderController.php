@@ -111,7 +111,7 @@ class SliderController extends Controller
             'title' => $request->title,
             'heading' => $request->heading,
             'details' => $request->details,
-            'image' => $photourl,
+            'image' => isset($photourl) ? $photourl : $slider->image,
             'status' => $request->status,
             'updated_at' => now(),
         ]);
@@ -139,5 +139,19 @@ class SliderController extends Controller
         // Show a success message
         notyf()->warning('Slider deleted successfully.');
         return to_route('admin.slider.index');
+    }
+
+    /**
+     * slider status change
+     */
+    public function changeStatus(Request $request)
+    {
+
+        $slider = Slider::findOrFail($request->id);
+        $slider->status = $request->status;
+        $slider->save();
+
+        notyf()->info('Slider updated successfully!');
+        return response()->json(['success' => 'Slider updated successfully!']);
     }
 }

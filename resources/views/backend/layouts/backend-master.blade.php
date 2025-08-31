@@ -7,14 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta content="Codescandy" name="author">
     <title> FreshCart | @yield('title')</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <style>
-    #nprogress .bar {
-        background: linear-gradient(180deg, #7ce67c, #CEEFCE) !important;
-        height: 10px;
-        z-index: 9999999 !important;
-    }
-    
-</style>
+        #nprogress .bar {
+            background: linear-gradient(180deg, #7ce67c, #CEEFCE) !important;
+            height: 10px;
+            z-index: 9999999 !important;
+        }
+    </style>
     <!-- Favicon icon-->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('backend/assets/images/favicon/favicon.ico') }}">
 
@@ -31,9 +31,9 @@
         integrity="sha512-EZSUkJWTjzDlspOoPSpUFR0o0Xy7jdzW//6qhUkoZ9c4StFkVsp9fbbd0O06p9ELS3H486m4wmrCELjza4JEog=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" />
-
-
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap5-toggle@5.1.2/css/bootstrap5-toggle.min.css" rel="stylesheet" />
+    @stack('admin_style')
+    @routes
 </head>
 
 <body>
@@ -286,6 +286,9 @@
         integrity="sha512-8QFTrG0oeOiyWo/VM9Y8kgxdlCryqhIxVeRpWSezdRRAvarxVtwLnGroJgnVW9/XBRduxO/z1GblzPrMQoeuew=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap5-toggle@5.1.2/js/bootstrap5-toggle.ecmas.min.js"></script>
+
     <script>
         $('.dropify').dropify({
             messages: {
@@ -296,7 +299,6 @@
             }
         });
     </script>
-
     <script>
         // Page load complete হলে NProgress finish
         $(window).on('load', function() {
@@ -327,9 +329,15 @@
         // Optional: page initially loading
         NProgress.start();
     </script>
+    @stack('admin_script')
 
-
-
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
 </body>
 
 </html>
