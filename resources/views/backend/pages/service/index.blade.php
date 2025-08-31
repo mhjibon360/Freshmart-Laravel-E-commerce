@@ -29,37 +29,19 @@
             <div class="col-xl-12 col-12 mb-5">
                 <!-- card -->
                 <div class="card h-100 card-lg">
-                    <div class="px-6 py-6">
-                        <div class="row justify-content-between">
-                            <div class="col-lg-4 col-md-6 col-12 mb-2 mb-md-0">
-                                <!-- form -->
-                                <form class="d-flex" role="search">
-                                    <input class="form-control" type="search" placeholder="Search Category"
-                                        aria-label="Search" />
-                                </form>
-                            </div>
-                            <!-- select option -->
-                            <div class="col-xl-2 col-md-4 col-12">
-                                <select class="form-select">
-                                    <option selected>Status</option>
-                                    <option value="Published">Published</option>
-                                    <option value="Unpublished">Unpublished</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
+
                     <!-- card body -->
                     <div class="card-body p-0">
                         <!-- table -->
-                        <div class="table-responsive">
-                            <table
+                        <div class="table-responsive p-4">
+                            <table id="example"
                                 class="table table-centered table-hover mb-0 text-nowrap table-borderless table-with-checkbox">
                                 <thead class="bg-light">
                                     <tr>
                                         <th>Si</th>
                                         <th>Icon</th>
                                         <th>Heading</th>
-                                        <th>Details</th>
+                                        <th width="20%">Details</th>
                                         <th>Date</th>
                                         <th>Actions</th>
                                     </tr>
@@ -73,7 +55,7 @@
                                                     class="icon-shape icon-sm" />
                                             </td>
                                             <td>{{ $item->heading }}</td>
-                                            <td>{{ $item->details }}</td>
+                                            <td width="20%">{{ $item->details }}</td>
                                             <td>{{ $item->created_at->format('d M Y') }}</td>
                                             <td>
                                                 <div class="dropdown">
@@ -109,19 +91,7 @@
                             </table>
                         </div>
                     </div>
-                    <div
-                        class="border-top d-flex justify-content-between align-items-md-center px-6 py-6 flex-md-row flex-column gap-4">
-                        <span>Showing 1 to 8 of 12 entries</span>
-                        <nav>
-                            <ul class="pagination mb-0">
-                                <li class="page-item disabled"><a class="page-link" href="#!">Previous</a></li>
-                                <li class="page-item"><a class="page-link active" href="#!">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#!">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#!">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#!">Next</a></li>
-                            </ul>
-                        </nav>
-                    </div>
+               
                 </div>
             </div>
         </div>

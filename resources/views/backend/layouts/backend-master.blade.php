@@ -32,6 +32,9 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap5-toggle@5.1.2/css/bootstrap5-toggle.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap5.css" />
+
+
     @stack('admin_style')
     @routes
 </head>
@@ -288,7 +291,23 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap5-toggle@5.1.2/js/bootstrap5-toggle.ecmas.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap5.js"></script>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            new DataTable('#example', {
+                responsive: true, // Mobile friendly
+                paging: true, // Pagination
+                searching: true, // Search box
+                ordering: true, // Sorting
+                info: true // "Showing 1 to 10 of X entries"
+            });
+        });
+    </script>
+
+
+    </script>
     <script>
         $('.dropify').dropify({
             messages: {
