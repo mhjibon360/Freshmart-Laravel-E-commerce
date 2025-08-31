@@ -26,7 +26,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::controller(UserController::class)->group(function () {
         Route::get('/dashboard', 'index')->name('dashboard');
         Route::get('/order', 'order')->name('order');
-        Route::get('/setting', 'setting')->name('setting');
+        Route::get('/account-setting', 'setting')->name('setting');
+        Route::put('/update/profile', 'updateProfile')->name('update.profile');
+        Route::put('/update/password', 'updatepassword')->name('update.password');
+        Route::delete('/delete/account', 'deleteaccount')->name('delete.account');
     });
 });
 
@@ -37,5 +40,3 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__ . '/auth.php';
-
-

@@ -17,7 +17,7 @@
             </li>
             <!-- nav item -->
             <li class="nav-item">
-                <a class="nav-link" href="account-settings.html">
+                <a class="nav-link" href="{{ route('setting') }}">
                     <i class="feather-icon icon-settings me-2"></i>
                     Settings
                 </a>

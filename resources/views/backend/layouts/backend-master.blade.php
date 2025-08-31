@@ -7,6 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta content="Codescandy" name="author">
     <title> FreshCart | @yield('title')</title>
+    <style>
+    #nprogress .bar {
+        background: linear-gradient(180deg, #7ce67c, #CEEFCE) !important;
+        height: 10px;
+        z-index: 9999999 !important;
+    }
+    
+</style>
     <!-- Favicon icon-->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('backend/assets/images/favicon/favicon.ico') }}">
 
@@ -22,6 +30,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css"
         integrity="sha512-EZSUkJWTjzDlspOoPSpUFR0o0Xy7jdzW//6qhUkoZ9c4StFkVsp9fbbd0O06p9ELS3H486m4wmrCELjza4JEog=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" />
+
 
 
 </head>
@@ -275,6 +285,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"
         integrity="sha512-8QFTrG0oeOiyWo/VM9Y8kgxdlCryqhIxVeRpWSezdRRAvarxVtwLnGroJgnVW9/XBRduxO/z1GblzPrMQoeuew=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
     <script>
         $('.dropify').dropify({
             messages: {
@@ -285,6 +296,40 @@
             }
         });
     </script>
+
+    <script>
+        // Page load complete হলে NProgress finish
+        $(window).on('load', function() {
+            NProgress.done();
+        });
+
+        // Page refresh / back / forward / link click start
+        $(document).on('click', 'a[href]', function(e) {
+            const href = $(this).attr('href');
+
+            // Skip blank target, anchors, same page
+            if ($(this).attr('target') === '_blank' || href.startsWith('#') || href === window.location.href) {
+                return;
+            }
+
+            // Start NProgress
+            NProgress.start();
+
+            // Optional: minimum progress time
+            setTimeout(() => NProgress.done(), 1000); // 1s minimum bar
+        });
+
+        // Page refresh/back/forward
+        $(window).on('beforeunload', function() {
+            NProgress.start();
+        });
+
+        // Optional: page initially loading
+        NProgress.start();
+    </script>
+
+
+
 </body>
 
 </html>

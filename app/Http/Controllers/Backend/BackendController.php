@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backnd;
+namespace App\Http\Controllers\Backend;
 
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -44,8 +44,8 @@ class BackendController extends Controller
         if ($request->hasFile('photo')) {
             $file = $request->file('photo');
             $filename = hexdec(uniqid()) . $file->getClientOriginalName();
-            $photourl = "upload/profile/admin/" . $filename;
-            $file->move(public_path('upload/profile/admin'), $filename);
+            $photourl = "upload/profile/customer/" . $filename;
+            $file->move(public_path('upload/profile/customer'), $filename);
             if (file_exists($user->photo)) {
                 unlink($user->photo);
             }
