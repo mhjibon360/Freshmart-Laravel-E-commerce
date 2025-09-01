@@ -16,7 +16,7 @@
                      </a>
                  </li>
                  <li class="nav-item mt-6 mb-3">
-                     <span class="nav-label">Store Managements</span>
+                     <span class="nav-label">Website Managements</span>
                  </li>
                  <li class="nav-item">
                      <a class="nav-link " href="{{ route('admin.slider.index') }}">
@@ -42,11 +42,14 @@
                          </div>
                      </a>
                  </li>
+                 <li class="nav-item mt-6 mb-3">
+                     <span class="nav-label">Store Managements</span>
+                 </li>
                  <li class="nav-item">
-                     <a class="nav-link " href="products.html">
+                     <a class="nav-link " href="{{ route('admin.product-category.index') }}">
                          <div class="d-flex align-items-center">
                              <span class="nav-link-icon"><i class="bi bi-cart"></i></span>
-                             <span class="nav-link-text">Products</span>
+                             <span class="nav-link-text">Product Category</span>
                          </div>
                      </a>
                  </li>

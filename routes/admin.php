@@ -51,6 +51,11 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     // *****************************************product and product attributes *******************
     // product category all routes
     Route::resource('/product-category', CategoryController::class);
+    Route::controller(CategoryController::class)->group(function () {
+        Route::post('/featured-category-status', 'featuredCategoryStatus')->name('featured.category.status');
+        Route::post('/footer-category-status', 'footerCategoryStatus')->name('footer.category.status');
+    });
+
     // product subcategory all routes
     Route::resource('/product-subcategory', SubcategoryController::class);
     // product all routes
