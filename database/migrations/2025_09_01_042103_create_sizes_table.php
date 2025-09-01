@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('size_slug')->nullable();
             $table->timestamps();
         });
-        
+
         Schema::create('sizes_products', function (Blueprint $table) {
             $table->id();
             $table->foreignId('size_id')->constrained()->onDelete('cascade');

@@ -111,10 +111,22 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * @property int $id
+ * @property string|null $color_name
+ * @property string|null $color_slug
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Product> $products
+ * @property-read int|null $products_count
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Color findSimilarSlugs(string $attribute, array $config, string $slug)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Color newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Color newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Color query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Color whereColorName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Color whereColorSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Color whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Color whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Color whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Color withUniqueSlugConstraints(\Illuminate\Database\Eloquent\Model $model, string $attribute, array $config, string $slug)
  */
 	class Color extends \Eloquent {}
@@ -373,23 +385,26 @@ namespace App\Models{
  * @property string $price
  * @property string|null $discount_price
  * @property int|null $quantity
- * @property string|null $size
- * @property string|null $color
  * @property string $product_code
  * @property string|null $details
  * @property string|null $informations
  * @property int $popular_products
  * @property int $best_sells
  * @property string|null $type
- * @property int $status
+ * @property string $status
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Category|null $category
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Color> $colors
+ * @property-read int|null $colors_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Size> $sizes
+ * @property-read int|null $sizes_count
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Product findSimilarSlugs(string $attribute, array $config, string $slug)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product query()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereBestSells($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereCategoryId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereColor($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereDetails($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereDiscountPrice($value)
@@ -400,13 +415,13 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereProductCode($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereProductName($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereQuantity($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereSize($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereSubcategoryId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereThumbnail($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Product withUniqueSlugConstraints(\Illuminate\Database\Eloquent\Model $model, string $attribute, array $config, string $slug)
  */
 	class Product extends \Eloquent {}
 }
@@ -484,10 +499,22 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * @property int $id
+ * @property string|null $size_name
+ * @property string|null $size_slug
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Product> $products
+ * @property-read int|null $products_count
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Size findSimilarSlugs(string $attribute, array $config, string $slug)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Size newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Size newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Size query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Size whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Size whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Size whereSizeName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Size whereSizeSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Size whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Size withUniqueSlugConstraints(\Illuminate\Database\Eloquent\Model $model, string $attribute, array $config, string $slug)
  */
 	class Size extends \Eloquent {}

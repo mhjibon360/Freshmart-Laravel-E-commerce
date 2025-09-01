@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 
@@ -17,5 +18,11 @@ class Size extends Model
                 'source' => 'size_name'
             ]
         ];
+    }
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class, 'sizes_products', 'size_id', 'product_id')
+            ->withTimestamps();
     }
 }

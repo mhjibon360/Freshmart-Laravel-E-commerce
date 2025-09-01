@@ -47,7 +47,7 @@
                                 <div class="mb-3 col-lg-12">
                                     <label class="form-label" for="product_name">Product Name</label>
                                     <input type="text" class="form-control" name="product_name"
-                                        value="{{ old('product_name') }}" id="product_name" required />
+                                        value="{{ old('product_name') }}" id="product_name"  />
                                     @error('product_name')
                                         <span class=" text-danger">{{ $message }}</span>
                                     @enderror

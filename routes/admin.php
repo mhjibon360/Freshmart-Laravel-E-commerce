@@ -65,6 +65,7 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     Route::resource('/product', ProductController::class);
     Route::controller(ProductController::class)->group(function () {
         Route::get('/get-subcategory', 'getsubcategory')->name('get.subcategory');
+        Route::post('/product-status', 'productstatus')->name('product.status');
     });
     // product color all routes
     Route::resource('/product-color', ColorController::class);

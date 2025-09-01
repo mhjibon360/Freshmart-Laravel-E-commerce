@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('category_id')->nullable();
             $table->string('subcategory_id')->nullable();
             $table->string('product_name');
+            $table->string('slug')->unique()->nullable();
             $table->string('thumbnail');
             $table->decimal('price', 10, 2);
             $table->decimal('discount_price', 10, 2)->nullable();
@@ -27,7 +28,7 @@ return new class extends Migration
             $table->boolean('popular_products')->default(false);
             $table->boolean('best_sells')->default(false);
             $table->enum('type', ['hot', 'sale'])->nullable();
-            $table->boolean('status')->default(true);
+            $table->string('status')->default(1);
             $table->timestamps();
         });
     }
