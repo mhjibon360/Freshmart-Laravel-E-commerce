@@ -53,24 +53,46 @@
                          </div>
                      </a>
                  </li>
+                 <li class="nav-item">
+                     <a class="nav-link " href="{{ route('admin.product-subcategory.index') }}">
+                         <div class="d-flex align-items-center">
+                             <span class="nav-link-icon"><i class="bi bi-cart"></i></span>
+                             <span class="nav-link-text">Product SubCategory</span>
+                         </div>
+                     </a>
+                 </li>
+                 <li class="nav-item">
+                     <a class="nav-link " href="{{ route('admin.product-color.index') }}">
+                         <div class="d-flex align-items-center">
+                             <span class="nav-link-icon"><i class="bi bi-cart"></i></span>
+                             <span class="nav-link-text">Product Color</span>
+                         </div>
+                     </a>
+                 </li>
 
                  <li class="nav-item">
                      <a class="nav-link  collapsed " href="#" data-bs-toggle="collapse"
                          data-bs-target="#navCategoriesOrders" aria-expanded="false"
                          aria-controls="navCategoriesOrders">
                          <div class="d-flex align-items-center">
-                             <span class="nav-link-icon"><i class="bi bi-bag"></i></span>
-                             <span class="nav-link-text">Orders</span>
+                             <span class="nav-link-icon"><i class="bi bi-cart"></i></span>
+                             <span class="nav-link-text">Manage Product</span>
                          </div>
                      </a>
                      <div id="navCategoriesOrders" class="collapse " data-bs-parent="#sideNavbar">
                          <ul class="nav flex-column">
+                            <!-- Nav item -->
                              <li class="nav-item">
-                                 <a class="nav-link " href="order-list.html">List</a>
+                                 <a class="nav-link " href="{{ route('admin.product.create') }}">Add Product</a>
                              </li>
-                             <!-- Nav item -->
                              <li class="nav-item">
-                                 <a class="nav-link " href="order-single.html">Single</a>
+                                 <a class="nav-link " href="{{ route('admin.product.index') }}">All Product</a>
+                             </li>
+                             <li class="nav-item">
+                                 <a class="nav-link " href="order-list.html">Active Product</a>
+                             </li>
+                             <li class="nav-item">
+                                 <a class="nav-link " href="order-list.html">Deactive Product</a>
                              </li>
                          </ul>
                      </div>

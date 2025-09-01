@@ -1,5 +1,5 @@
 @extends('backend.layouts.backend-master')
-@section('title', 'product subcategory list')
+@section('title', 'product color list')
 @section('content')
     <div class="container">
         <!-- row -->
@@ -8,20 +8,20 @@
                 <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-4">
                     <!-- pageheader -->
                     <div>
-                        <h2>Product subcategory</h2>
+                        <h2>Product color</h2>
                         <!-- breacrumb -->
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb mb-0">
                                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}"
                                         class="text-inherit">Dashboard</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">subcategory</li>
+                                <li class="breadcrumb-item active" aria-current="page">color</li>
                             </ol>
                         </nav>
                     </div>
                     <!-- button -->
                     <div>
-                        <a href="{{ route('admin.product-subcategory.create') }}" class="btn btn-primary">Add New product
-                            subcategory</a>
+                        <a href="{{ route('admin.product-color.create') }}" class="btn btn-primary">Add New product
+                            color</a>
                     </div>
                 </div>
             </div>
@@ -40,17 +40,15 @@
                                 <thead class="bg-light">
                                     <tr>
                                         <th>Si</th>
-                                        <th>Category</th>
-                                        <th>SubCategory Name</th>
+                                        <th>color Name</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($allsubcategory as $item)
+                                    @foreach ($allcolor as $item)
                                         <tr>
                                             <td>{{ $loop->index + 1 }} </td>
-                                            <td>{{ $item->category->category_name }}</td>
-                                            <td>{{ $item->subcategory_name }}</td>
+                                            <td>{{ $item->color_name }}</td>
                                             <td>
                                                 <div class="dropdown">
                                                     <a href="#" class="text-reset" data-bs-toggle="dropdown"
@@ -60,7 +58,7 @@
                                                     <ul class="dropdown-menu">
                                                         <li>
                                                             <form
-                                                                action="{{ route('admin.product-subcategory.destroy', $item->id) }}"
+                                                                action="{{ route('admin.product-color.destroy', $item->id) }}"
                                                                 method="post">
                                                                 @csrf
                                                                 @method('DELETE')
@@ -72,7 +70,7 @@
                                                         </li>
                                                         <li>
                                                             <a class="dropdown-item"
-                                                                href="{{ route('admin.product-subcategory.edit', $item->id) }}">
+                                                                href="{{ route('admin.product-color.edit', $item->id) }}">
                                                                 <i class="bi bi-pencil-square me-3"></i>
                                                                 Edit
                                                             </a>
@@ -112,16 +110,16 @@
         // sweet alert end
 
         $(function() {
-            // featured subcategory status change
-            $('.featured_subcategory').change(function() {
-                var featured_subcategory = $(this).prop('checked') == true ? 1 : 0;
+            // featured color status change
+            $('.featured_color').change(function() {
+                var featured_color = $(this).prop('checked') == true ? 1 : 0;
                 var id = $(this).data('id');
 
                 $.ajax({
                     type: "POST",
-                    url: route('admin.featured.subcategory.status'),
+                    url: route('admin.featured.color.status'),
                     data: {
-                        featured_subcategory: featured_subcategory,
+                        featured_color: featured_color,
                         id: id,
                     },
                     dataType: "json",
@@ -141,16 +139,16 @@
                 });
             });
 
-            // Footer subcategory status change
-            $('.footer_subcategory').change(function() {
-                var footer_subcategory = $(this).prop('checked') == true ? 1 : 0;
+            // Footer color status change
+            $('.footer_color').change(function() {
+                var footer_color = $(this).prop('checked') == true ? 1 : 0;
                 var id = $(this).data('id');
 
                 $.ajax({
                     type: "POST",
-                    url: route('admin.footer.subcategory.status'),
+                    url: route('admin.footer.color.status'),
                     data: {
-                        footer_subcategory: footer_subcategory,
+                        footer_color: footer_color,
                         id: id,
                     },
                     dataType: "json",

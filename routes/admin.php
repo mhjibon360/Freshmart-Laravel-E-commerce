@@ -4,6 +4,8 @@ use App\Models\BlogPost;
 use App\Models\BlogCategory;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\AdsController;
+use App\Http\Controllers\Backend\SizeController;
+use App\Http\Controllers\Backend\ColorController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\ReviewController;
@@ -16,6 +18,7 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\DownloadController;
 use App\Http\Controllers\Backend\ServicesController;
 use App\Http\Controllers\Backend\SubcategoryController;
+
 
 // require __DIR__ . '/auth.php';
 
@@ -60,6 +63,10 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     Route::resource('/product-subcategory', SubcategoryController::class);
     // product all routes
     Route::resource('/product', ProductController::class);
+     // product color all routes
+    Route::resource('/product-color', ColorController::class);
+    // product size all routes
+    Route::resource('/product-size', SizeController::class);
     // coupon all routes
     Route::resource('/coupon', CouponController::class);
 

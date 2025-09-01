@@ -21,8 +21,6 @@ return new class extends Migration
             $table->decimal('price', 10, 2);
             $table->decimal('discount_price', 10, 2)->nullable();
             $table->unsignedInteger('quantity')->nullable();
-            $table->string('size')->nullable();
-            $table->string('color')->nullable();
             $table->string('product_code')->unique();
             $table->longText('details')->nullable();
             $table->longText('informations')->nullable();

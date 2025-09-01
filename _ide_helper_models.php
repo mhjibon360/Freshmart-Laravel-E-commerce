@@ -111,6 +111,17 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Color findSimilarSlugs(string $attribute, array $config, string $slug)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Color newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Color newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Color query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Color withUniqueSlugConstraints(\Illuminate\Database\Eloquent\Model $model, string $attribute, array $config, string $slug)
+ */
+	class Color extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * @property int $id
  * @property string|null $user_id
  * @property string|null $product_id
@@ -473,6 +484,17 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Size findSimilarSlugs(string $attribute, array $config, string $slug)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Size newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Size newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Size query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Size withUniqueSlugConstraints(\Illuminate\Database\Eloquent\Model $model, string $attribute, array $config, string $slug)
+ */
+	class Size extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * @property int $id
  * @property string $title
  * @property string $heading
@@ -504,6 +526,8 @@ namespace App\Models{
  * @property string $subcategory_slug
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Category|null $category
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Subcategory findSimilarSlugs(string $attribute, array $config, string $slug)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Subcategory newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Subcategory newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Subcategory query()
@@ -513,6 +537,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Subcategory whereSubcategoryName($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Subcategory whereSubcategorySlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Subcategory whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Subcategory withUniqueSlugConstraints(\Illuminate\Database\Eloquent\Model $model, string $attribute, array $config, string $slug)
  */
 	class Subcategory extends \Eloquent {}
 }

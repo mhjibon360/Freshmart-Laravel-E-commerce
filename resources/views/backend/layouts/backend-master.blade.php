@@ -14,6 +14,7 @@
             height: 10px;
             z-index: 9999999 !important;
         }
+        
     </style>
     <!-- Favicon icon-->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('backend/assets/images/favicon/favicon.ico') }}">
@@ -33,6 +34,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap5-toggle@5.1.2/css/bootstrap5-toggle.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap5.css" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
 
     @stack('admin_style')
@@ -293,7 +295,15 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap5-toggle@5.1.2/js/bootstrap5-toggle.ecmas.min.js"></script>
     <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap5.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
+
+    <script>
+        $(document).ready(function() {
+            $('.js-example-basic-single').select2();
+
+        });
+    </script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             new DataTable('#example', {
