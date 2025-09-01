@@ -70,4 +70,13 @@ class ProductController extends Controller
     {
         //
     }
+
+    /**
+     * Get subcategory by category id
+     */
+    public function getsubcategory(Request $request)
+    {
+        $allsubcategory = Subcategory::where('category_id', $request->category_id)->get();
+        return response()->json($allsubcategory);
+    }
 }

@@ -72,11 +72,11 @@
                                     </label>
                                     <select name="subcategory_id" id="subcategory_id"
                                         class="js-example-basic-single form-control">
-                                        <option value="" selected disabled>Select SubCategory</option>
-                                        @foreach ($allsubcategory as $subcategory)
+                                        {{-- <option value="" selected disabled>Select SubCategory</option> --}}
+                                        {{-- @foreach ($allsubcategory as $subcategory)
                                             <option value="{{ $subcategory->id }}">{{ $subcategory->subcategory_name }}
                                             </option>
-                                        @endforeach
+                                        @endforeach --}}
                                     </select>
                                     @error('subcategory_id')
                                         <span class=" text-danger">{{ $message }}</span>
@@ -87,7 +87,8 @@
                                 <div class="mb-3 col-lg-12">
                                     <label class="form-label text-capitalize" for="size">Product Size
                                     </label>
-                                    <select name="size[]" id="size" class="js-example-basic-multiple form-control" multiple="multiple">
+                                    <select name="size[]" id="size" class="js-example-basic-multiple form-control"
+                                        multiple="multiple">
                                         @foreach ($allsize as $size)
                                             <option value="{{ $size->id }}">{{ $size->size_name }}</option>
                                         @endforeach
@@ -131,7 +132,8 @@
                                 <div class="mb-3 col-lg-12">
                                     <label class="form-label text-capitalize" for="color">Product color
                                     </label>
-                                    <select name="color[]" id="color" class="js-example-basic-multiple form-control" multiple="multiple">
+                                    <select name="color[]" id="color" class="js-example-basic-multiple form-control"
+                                        multiple="multiple">
                                         @foreach ($allcolor as $color)
                                             <option value="{{ $color->id }}">{{ $color->color_name }}</option>
                                         @endforeach
@@ -259,7 +261,8 @@
                                     <div class="form-check">
                                         <input type="checkbox" checked data-toggle="toggle" id="popular_products"
                                             data-onstyle="outline-info" data-offstyle="outline-warning" value="1"
-                                            name="popular_products" data-onlabel="Popular Product(yes)" data-offlabel="Popular Product(No)" />
+                                            name="popular_products" data-onlabel="Popular Product(yes)"
+                                            data-offlabel="Popular Product(No)" />
 
                                     </div>
                                 </div>
@@ -267,7 +270,8 @@
                                     <div class="form-check my-2">
                                         <input type="checkbox" checked data-toggle="toggle" id="best_sells"
                                             data-onstyle="outline-primary" data-offstyle="outline-danger" value="1"
-                                            name="best_sells" data-onlabel="Best Seller Product(yes)" data-offlabel="Best Seller Product(No)" />
+                                            name="best_sells" data-onlabel="Best Seller Product(yes)"
+                                            data-offlabel="Best Seller Product(No)" />
                                     </div>
                                 </div>
                             </div>
@@ -296,3 +300,30 @@
 
     </div>
 @endsection
+@push('admin_script')
+    <script>
+        $(document).ready(function() {
+            $(document).on('change', '#category_id', function(e) {
+                e.preventDefault();
+                var category_id = $(this).val();
+                // alert(category_id);
+                $.ajax({
+                    url: route('admin.get.subcategory'),
+                    type: "GET",
+                    data: {
+                        category_id: category_id
+                    },
+                    success: function(data) {
+                        var html =
+                            '<option value="" selected disabled>--choose subcategory--</option>';
+                        $.each(data, function(key, value) {
+                            html +=
+                                `<option value="${value.subcategory_name}">${value.subcategory_name}</option>`;
+                        });
+                        $('#subcategory_id').html(html);
+                    },
+                });
+            });
+        });
+    </script>
+@endpush

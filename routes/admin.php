@@ -63,7 +63,10 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     Route::resource('/product-subcategory', SubcategoryController::class);
     // product all routes
     Route::resource('/product', ProductController::class);
-     // product color all routes
+    Route::controller(ProductController::class)->group(function () {
+        Route::get('/get-subcategory', 'getsubcategory')->name('get.subcategory');
+    });
+    // product color all routes
     Route::resource('/product-color', ColorController::class);
     // product size all routes
     Route::resource('/product-size', SizeController::class);
