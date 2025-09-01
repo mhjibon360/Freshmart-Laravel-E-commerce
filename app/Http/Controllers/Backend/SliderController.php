@@ -151,7 +151,6 @@ class SliderController extends Controller
         $slider->status = $request->status;
         $slider->save();
 
-        notyf()->info('Slider updated successfully!');
         return response()->json(['success' => 'Slider updated successfully!']);
     }
 }

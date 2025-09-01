@@ -114,6 +114,20 @@
 
 @push('admin_script')
     <script>
+        // sweet alert
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            // iconColor: 'white',
+            customClass: {
+                popup: 'colored-toast',
+            },
+            showConfirmButton: false,
+            timer: 3500,
+            timerProgressBar: true,
+        });
+        // sweet alert end
+
         $(function() {
             // featured category status change
             $('.featured_category').change(function() {
@@ -129,11 +143,21 @@
                     },
                     dataType: "json",
                     success: function(response) {
-                        // console.log(response);
-                        window.location.reload();
+                        if (response.success) {
+                            Toast.fire({
+                                icon: 'success',
+                                title: response.success,
+                            })
+                        } else {
+                            Toast.fire({
+                                icon: 'error',
+                                title: 'Error',
+                            })
+                        }
                     }
                 });
             });
+
             // Footer category status change
             $('.footer_category').change(function() {
                 var footer_category = $(this).prop('checked') == true ? 1 : 0;
@@ -148,8 +172,17 @@
                     },
                     dataType: "json",
                     success: function(response) {
-                        // console.log(response);
-                        window.location.reload();
+                        if (response.success) {
+                            Toast.fire({
+                                icon: 'success',
+                                title: response.success,
+                            })
+                        } else {
+                            Toast.fire({
+                                icon: 'error',
+                                title: 'Error',
+                            })
+                        }
                     }
                 });
             });

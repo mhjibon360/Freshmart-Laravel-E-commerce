@@ -121,7 +121,30 @@
                     },
                     dataType: "json",
                     success: function(response) {
-                        window.location.reload();
+                       // sweet alert
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            // iconColor: 'white',
+                            customClass: {
+                                popup: 'colored-toast',
+                            },
+                            showConfirmButton: false,
+                            timer: 3500,
+                            timerProgressBar: true,
+                        });
+                        // sweet alert end
+                        if (response.success) {
+                            Toast.fire({
+                                icon: 'success',
+                                title: response.success,
+                            })
+                        } else {
+                            Toast.fire({
+                                icon: 'error',
+                                title: 'Error',
+                            })
+                        }
                     }
                 });
             })

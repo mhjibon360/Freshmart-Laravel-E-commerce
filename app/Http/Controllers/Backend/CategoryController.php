@@ -146,7 +146,6 @@ class CategoryController extends Controller
         $category->featured_category = $request->featured_category;
         $category->save();
 
-        notyf()->info('Featured category updated successfully!');
         return response()->json(['success' => 'Featured category updated successfully!']);
     }
 
@@ -160,7 +159,6 @@ class CategoryController extends Controller
         $category->footer_category = $request->footer_category;
         $category->save();
 
-        notyf()->info('Footer category updated successfully!');
         return response()->json(['success' => 'Footer category updated successfully!']);
     }
 }

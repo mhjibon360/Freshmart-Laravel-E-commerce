@@ -147,7 +147,6 @@ class AdsController extends Controller
         $advertisement->status = $request->status;
         $advertisement->save();
 
-        notyf()->info('advertisement updated successfully!');
         return response()->json(['success' => 'advertisement updated successfully!']);
     }
 }
