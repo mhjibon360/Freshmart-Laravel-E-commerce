@@ -117,7 +117,12 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $allcategory = Category::all();
+        $allsubcategory = Subcategory::all();
+        $allsize = Size::all();
+        $allcolor = Color::all();
+        $product = Product::findOrFail($id);
+        return view('backend.pages.product.edit', compact(['allcategory', 'allsubcategory', 'allsize', 'allcolor', 'product']));
     }
 
     /**
@@ -125,7 +130,62 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $product = Product::findOrFail($id);
+
+        // validate
+        $request->validate([
+            'category_id' => 'required',
+            'subcategory_id' => 'nullable',
+            'product_name' => 'required|unique:products,product_name,' . $id,
+            'product_code' => 'required|unique:products,product_code,' . $id,
+            'price' => 'required|numeric',
+            'quantity' => 'required|numeric',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = hexdec(uniqid()) . $file->getClientOriginalName();
+            $photourl = "upload/product/thumbnail/" . $filename;
+            $file->move(public_path('upload/product/thumbnail'), $filename);
+            // unlink image
+            if (file_exists($product->thumbnail)) {
+                unlink($product->thumbnail);
+            }
+        }
+
+        $product->update([
+            'user_id' => Auth::id(),
+            'category_id' => $request->category_id,
+            'subcategory_id' => $request->subcategory_id,
+            'product_name' => $request->product_name,
+            'thumbnail' => isset($photourl) ? $photourl : $product->thumbnail,
+            'price' => $request->price,
+            'discount_price' => $request->discount_price,
+            'quantity' => $request->quantity,
+            'product_code' => $request->product_code,
+            'details' => $request->details,
+            'informations' => $request->informations,
+            'popular_products' => $request->popular_products ? $request->popular_products : 0,
+            'best_sells' => $request->best_sells ? $request->best_sells : 0,
+            'type' => $request->type,
+            'status' => $request->status,
+            'created_at' => now(),
+        ]);
+
+
+        // if get size store size with pivot table data
+        if ($request->size) {
+            $product->sizes()->sync($request->size);
+        }
+
+        // if get color store color with pivot table data
+        if ($request->color) {
+            $product->colors()->sync($request->color);
+        }
+
+        notyf()->success('Product update successfully');
+        return redirect()->route('admin.product.index');
     }
 
     /**

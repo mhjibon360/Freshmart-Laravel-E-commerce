@@ -318,7 +318,7 @@
                             '<option value="" selected disabled>--choose subcategory--</option>';
                         $.each(data, function(key, value) {
                             html +=
-                                `<option value="${value.subcategory_name}">${value.subcategory_name}</option>`;
+                                `<option value="${value.id}">${value.subcategory_name}</option>`;
                         });
                         $('#subcategory_id').html(html);
                     },
