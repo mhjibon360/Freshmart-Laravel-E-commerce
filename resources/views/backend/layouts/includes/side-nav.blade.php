@@ -69,6 +69,14 @@
                          </div>
                      </a>
                  </li>
+                 <li class="nav-item">
+                     <a class="nav-link " href="{{ route('admin.product-size.index') }}">
+                         <div class="d-flex align-items-center">
+                             <span class="nav-link-icon"><i class="bi bi-cart"></i></span>
+                             <span class="nav-link-text">Product Size</span>
+                         </div>
+                     </a>
+                 </li>
 
                  <li class="nav-item">
                      <a class="nav-link  collapsed " href="#" data-bs-toggle="collapse"
@@ -81,7 +89,7 @@
                      </a>
                      <div id="navCategoriesOrders" class="collapse " data-bs-parent="#sideNavbar">
                          <ul class="nav flex-column">
-                            <!-- Nav item -->
+                             <!-- Nav item -->
                              <li class="nav-item">
                                  <a class="nav-link " href="{{ route('admin.product.create') }}">Add Product</a>
                              </li>
