@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\Color;
+use App\Models\Size;
+use App\Models\Subcategory;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -20,7 +24,11 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $allcategory = Category::all();
+        $allsubcategory = Subcategory::all();
+        $allsize = Size::all();
+        $allcolor = Color::all();
+        return view('backend.pages.product.create', compact(['allcategory', 'allsubcategory', 'allsize', 'allcolor']));
     }
 
     /**
@@ -28,7 +36,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return ($request->all());
     }
 
     /**

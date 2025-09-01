@@ -43,7 +43,7 @@
                             <div class="row">
                                 <!-- input -->
                                 <div class="mb-3 col-lg-12">
-                                    <label class="form-label text-capitalize" for="category_id">subcategory
+                                    <label class="form-label text-capitalize" for="category_id">category
                                         name</label>
                                     <select name="category_id" id="category_id" class="js-example-basic-single form-control">
                                         <option value="" selected disabled>Select Category</option>

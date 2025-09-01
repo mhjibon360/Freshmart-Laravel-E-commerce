@@ -14,7 +14,6 @@
             height: 10px;
             z-index: 9999999 !important;
         }
-        
     </style>
     <!-- Favicon icon-->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('backend/assets/images/favicon/favicon.ico') }}">
@@ -284,7 +283,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ asset('backend/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('backend/assets/libs/simplebar/dist/simplebar.min.js') }}"></script>
-
+    <script src="{{ asset('backend/assets/libs/quill/dist/quill.min.js') }}"></script>
+    <script src="{{ asset('backend/assets/js/vendors/editor.js') }}"></script>
     <!-- Theme JS -->
     <script src="{{ asset('backend/assets/js/theme.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"
@@ -302,6 +302,9 @@
         $(document).ready(function() {
             $('.js-example-basic-single').select2();
 
+        });
+        $(document).ready(function() {
+            $('.js-example-basic-multiple').select2();
         });
     </script>
     <script>
