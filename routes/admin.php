@@ -11,6 +11,7 @@ use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\ReviewController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\BackendController;
+use App\Http\Controllers\Backend\BlogCategoryController;
 use App\Http\Controllers\Backend\PaymentController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SettingController;
@@ -96,7 +97,7 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
 
     // *****************************************blog *******************
     // blog category all routes
-    Route::resource('/blog-category', BlogCategory::class);
+    Route::resource('/blog-category', BlogCategoryController::class);
     // blog post all routes
     Route::resource('/blog-post', BlogPost::class);
 
