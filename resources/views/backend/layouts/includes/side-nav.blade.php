@@ -124,6 +124,14 @@
                          </div>
                      </a>
                  </li>
+                 <li class="nav-item">
+                     <a class="nav-link " href="{{ route('admin.blog-post.index') }}">
+                         <div class="d-flex align-items-center">
+                             <span class="nav-link-icon"><i class="bi bi-cart"></i></span>
+                             <span class="nav-link-text">Manage Blog-Post</span>
+                         </div>
+                     </a>
+                 </li>
              </ul>
          </div>
      </div>

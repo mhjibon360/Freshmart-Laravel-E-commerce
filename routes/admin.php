@@ -12,6 +12,7 @@ use App\Http\Controllers\Backend\ReviewController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\BackendController;
 use App\Http\Controllers\Backend\BlogCategoryController;
+use App\Http\Controllers\Backend\BlogPostController;
 use App\Http\Controllers\Backend\PaymentController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SettingController;
@@ -99,7 +100,7 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     // blog category all routes
     Route::resource('/blog-category', BlogCategoryController::class);
     // blog post all routes
-    Route::resource('/blog-post', BlogPost::class);
+    Route::resource('/blog-post', BlogPostController::class);
 
     // *****************************************settings *******************
     Route::controller(SettingController::class)->group(function () {

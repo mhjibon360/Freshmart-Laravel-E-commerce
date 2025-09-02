@@ -1,5 +1,5 @@
 @extends('backend.layouts.backend-master')
-@section('title', 'product coupon list')
+@section('title', 'blog category list')
 @section('content')
     <div class="container">
         <!-- row -->
@@ -8,7 +8,7 @@
                 <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-4">
                     <!-- pageheader -->
                     <div>
-                        <h2>Product coupon</h2>
+                        <h2>Blog category</h2>
                         <!-- breacrumb -->
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb mb-0">
@@ -20,8 +20,8 @@
                     </div>
                     <!-- button -->
                     <div>
-                        <a href="{{ route('admin.coupon.create') }}" class="btn btn-primary">Add New product
-                            coupon</a>
+                        <a href="{{ route('admin.blog-category.create') }}" class="btn btn-primary">Add New Blog
+                            Category</a>
                     </div>
                 </div>
             </div>
@@ -40,40 +40,17 @@
                                 <thead class="bg-light">
                                     <tr>
                                         <th>Si</th>
-                                        <th>coupon Name</th>
-                                        <th>coupon Discount</th>
-                                        <th>coupon Validity</th>
-                                        <th>Status</th>
+                                        <th>Category Name</th>
                                         <th>Date</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($allcoupon as $item)
+                                    @foreach ($allblogcategory as $item)
                                         <tr>
                                             <td>{{ $loop->index + 1 }} </td>
-                                            <td>{{ $item->coupon_name }}</td>
-                                            <td>
-                                                <span
-                                                    class="badge bg-light-primary text-dark-primary">{{ $item->coupon_discount }}%</span>
-                                            </td>
-                                            <td>
-                                                @if ($item->coupon_validity > now())
-                                                    <span class="badge bg-light-success text-dark-success">Valid</span>
-                                                @else
-                                                    <span class="badge bg-light-danger text-dark-danger">Invalid</span>
-                                                @endif
-                                                <span
-                                                    class="badge bg-light-warning text-dark-warning">{{ Carbon\Carbon::parse($item->coupon_validity)->diffForHumans() }}</span>
-                                            </td>
-
-                                            <td>
-                                                <input type="checkbox" class="toggle-class btn-sm"
-                                                    data-id="{{ $item->id }}" data-toggle="toggle" data-on="Active"
-                                                    data-off="Inactive" data-onstyle="success" data-offstyle="danger"
-                                                    data-size="small" {{ $item->status == 1 ? 'checked' : '' }}>
-                                            </td>
-                                            <td>{{ $item->created_at->format('l,d M Y') }}</td>
+                                            <td>{{ $item->category_name }}</td>
+                                            <td>{{ $item->created_at->format('d M Y') }}</td>
                                             <td>
                                                 <div class="dropdown">
                                                     <a href="#" class="text-reset" data-bs-toggle="dropdown"
@@ -82,7 +59,7 @@
                                                     </a>
                                                     <ul class="dropdown-menu">
                                                         <li>
-                                                            <form action="{{ route('admin.coupon.destroy', $item->id) }}"
+                                                            <form action="{{ route('admin.blog-category.destroy', $item->id) }}"
                                                                 method="post">
                                                                 @csrf
                                                                 @method('DELETE')
@@ -94,7 +71,7 @@
                                                         </li>
                                                         <li>
                                                             <a class="dropdown-item"
-                                                                href="{{ route('admin.coupon.edit', $item->id) }}">
+                                                                href="{{ route('admin.blog-category.edit', $item->id) }}">
                                                                 <i class="bi bi-pencil-square me-3"></i>
                                                                 Edit
                                                             </a>
@@ -113,63 +90,10 @@
             </div>
         </div>
     </div>
-
-
 @endsection
 
 @push('admin_script')
     <script>
-        $(function() {
-            $('.toggle-class').change(function() {
-                var status = $(this).prop('checked') == true ? 1 : 0;
-                var id = $(this).data('id');
-
-                $.ajax({
-                    type: "POST",
-                    url: route('admin.coupon.status'),
-                    data: {
-                        status: status,
-                        id: id,
-                    },
-                    dataType: "json",
-                    success: function(response) {
-                        console.log(response);
-
-                        // sweet alert
-                        const Toast = Swal.mixin({
-                            toast: true,
-                            position: 'top-end',
-                            // iconColor: 'white',
-                            customClass: {
-                                popup: 'colored-toast',
-                            },
-                            showConfirmButton: false,
-                            timer: 3500,
-                            timerProgressBar: true,
-                        });
-                        // sweet alert end
-                        if (response.active) {
-                            Toast.fire({
-                                icon: 'success',
-                                title: response.active,
-                            })
-                        } else if (response.deactive) {
-                            Toast.fire({
-                                icon: 'warning',
-                                title: response.deactive,
-                            })
-                        } else {
-                            Toast.fire({
-                                icon: 'error',
-                                title: 'Error',
-                            })
-                        }
-                    }
-                });
-            })
-        })
-
-
         // delete item
         $(document).ready(function() {
             $(document).on('click', '.delete_item', function(e) {
