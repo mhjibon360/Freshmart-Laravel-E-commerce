@@ -254,4 +254,91 @@ class ProductController extends Controller
             return response()->json(['active' => 'Product Active successfully!']);
         }
     }
+
+    // *********************************************multi image******************************
+
+    /**
+     * delete multi image by one
+     */
+    public function storemultiimage(Request $request)
+    {
+
+
+        // validate
+        $request->validate([
+            'photo_name.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        // upload new image
+        if ($request->hasFile('photo_name')) {
+
+            foreach ($request->file('photo_name') as $file) {
+                $filename = hexdec(uniqid()) . $file->getClientOriginalName();
+                $photourl = "upload/product/multiple-image/" . $filename;
+                $file->move(public_path('upload/product/multiple-image/'), $filename);
+                // store image
+                Multiimage::create([
+                    'product_id' => $request->pid,
+                    'photo_name' => $photourl,
+                ]);
+            }
+        }
+
+        // notifications
+        notyf()->success('Image uploaded successfully!');
+        return back();
+    }
+
+
+
+    /**
+     * update multi image by one
+     */
+    public function updatemultiimagebyone(Request $request)
+    {
+        // find single from multi
+        $image = Multiimage::findOrFail($request->id);
+
+        // validate
+        $request->validate([
+            'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        // unlink and update new one
+        if ($request->hasFile('photo')) {
+            $file = $request->file('photo');
+            $filename = hexdec(uniqid()) . $file->getClientOriginalName();
+            $photourl = "upload/product/multiple-image/" . $filename;
+            $file->move(public_path('upload/product/multiple-image/'), $filename);
+            // unlink image
+            if (file_exists($image->photo_name)) {
+                unlink($image->photo_name);
+            }
+        }
+
+        // update image
+        $image->update([
+            'photo_name' => isset($photourl) ? $photourl : $image->photo_name,
+        ]);
+
+        // notifications
+        notyf()->warning('Image update successfully!');
+        return back();
+    }
+
+    /**
+     * delete multi image by one
+     */
+    public function deletemultiimagebyone(Request $request)
+    {
+        $image = Multiimage::findOrFail($request->id);
+
+        if (file_exists($image->photo_name)) {
+            unlink($image->photo_name);
+        }
+        $image->delete();
+
+        notyf()->warning('Image deleted successfully!');
+        return back();
+    }
 }

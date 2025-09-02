@@ -66,6 +66,9 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     Route::controller(ProductController::class)->group(function () {
         Route::get('/get-subcategory', 'getsubcategory')->name('get.subcategory');
         Route::post('/product-status', 'productstatus')->name('product.status');
+        Route::post('/store-multiimage', 'storemultiimage')->name('store.multiimage');
+        Route::put('/update-multiimage-by-one', 'updatemultiimagebyone')->name('update.multiimage.byone');
+        Route::delete('/delete-multiimage-by-one', 'deletemultiimagebyone')->name('delete.multiimage.byone');
     });
     // product color all routes
     Route::resource('/product-color', ColorController::class);
@@ -73,6 +76,9 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     Route::resource('/product-size', SizeController::class);
     // coupon all routes
     Route::resource('/coupon', CouponController::class);
+    Route::controller(CouponController::class)->group(function () {
+        Route::post('/coupon-status', 'couponStatus')->name('coupon.status');
+    });
 
     // order all routes
     Route::controller(OrderController::class)->group(function () {

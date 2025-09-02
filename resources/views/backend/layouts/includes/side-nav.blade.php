@@ -105,6 +105,14 @@
                          </ul>
                      </div>
                  </li>
+                 <li class="nav-item">
+                     <a class="nav-link " href="{{ route('admin.coupon.index') }}">
+                         <div class="d-flex align-items-center">
+                             <span class="nav-link-icon"><i class="bi bi-cart"></i></span>
+                             <span class="nav-link-text">Product Coupon</span>
+                         </div>
+                     </a>
+                 </li>
              </ul>
          </div>
      </div>

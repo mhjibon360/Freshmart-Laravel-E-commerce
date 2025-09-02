@@ -221,18 +221,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- card -->
-                    <div class="card mb-6 card-lg">
-                        <!-- card body -->
-                        <div class="card-body p-6">
-                            <h4 class="mb-4 h5">Multiple Image</h4>
-                            <!-- input -->
-                            <div class="mb-3">
-                                <label class="form-label">Pick Image</label>
-                                <input type="file" name="photo_name[]" multiple class="form-control" />
-                            </div>
-                        </div>
-                    </div>
+
 
                     <!-- card -->
                     <div class="card mb-6 card-lg">
@@ -308,6 +297,89 @@
             </div>
         </form>
 
+        <div class="row">
+            <div class="col-md-8">
+                <!-- card -->
+                <div class="card mb-6 card-lg">
+                    <!-- card body -->
+                    <div class="card-body p-6">
+                        <h4 class="mb-4 h5">Multiple Image</h4>
+                        <!-- input -->
+                        <form action="{{ route('admin.store.multiimage') }}" method="post"
+                            enctype="multipart/form-data">
+                            @csrf
+                            <input type="hidden" name="pid" value="{{ $product->id }}">
+
+                            <div class="mb-3">
+                                <label class="form-label">Pick Multi Image</label>
+                                <input type="file" name="photo_name[]" multiple class="form-control" />
+                                <button class="mt-2 btn btn-success  rounded-1" type="submit">Submit</button>
+                                @error('photo_name')
+                                    <span class=" text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </form>
+                        <hr>
+                        <hr>
+
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Image</th>
+                                        <th scope="col">Update</th>
+                                        <th scope="col">Delete</th>
+                                    </tr>
+                                </thead>
+                                @php
+                                    $galleryimage = App\Models\Multiimage::where('product_id', $product->id)->get();
+                                @endphp
+                                <tbody>
+                                    @foreach ($galleryimage as $image)
+                                        <tr class="">
+                                            <td>
+                                                <img src="{{ asset($image->photo_name) }}"
+                                                    class=" img-fluid img-thumbnail"
+                                                    style="height: 40px;object-fit:cover;" alt="">
+                                            </td>
+                                            <td>
+                                                <form action="{{ route('admin.update.multiimage.byone') }}"
+                                                    method="post" enctype="multipart/form-data">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <input type="hidden" name="id" value="{{ $image->id }}">
+
+                                                    <div class=" d-flex items-center justify-content-between">
+                                                        <input type="file" name="photo" class=" form-control">
+                                                        <button class=" btn btn-info  rounded-1"
+                                                            type="submit">Update</button>
+                                                    </div>
+                                                </form>
+                                                @error('photo')
+                                                    <span class=" text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </td>
+                                            <td>
+                                                <form action="{{ route('admin.delete.multiimage.byone') }}"
+                                                    method="post">
+                                                    <input type="hidden" name="id" value="{{ $image->id }}">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="button"
+                                                        class="delete_item btn btn-danger">Delete</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 @endsection
 @push('admin_script')
@@ -333,6 +405,35 @@
                         $('#subcategory_id').html(html);
                     },
                 });
+            });
+        });
+    </script>
+
+    <script>
+        // delete item
+        $(document).ready(function() {
+            $(document).on('click', '.delete_item', function(e) {
+                e.preventDefault();
+                var form = $(this).closest("form");
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to delete this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your data has been deleted.",
+                            icon: "success"
+                        });
+                    }
+                });
+
             });
         });
     </script>
