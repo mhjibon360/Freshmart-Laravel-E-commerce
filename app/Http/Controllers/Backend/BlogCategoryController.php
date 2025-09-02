@@ -33,7 +33,7 @@ class BlogCategoryController extends Controller
     {
         // Validate the request
         $request->validate([
-            'category_name' => 'required|string|unique:blog_categories,blogcategory_name',
+            // 'category_name' => 'required|string|unique:blog_categories,blogcategory_name',
         ]);
 
         // Create the blogcategory

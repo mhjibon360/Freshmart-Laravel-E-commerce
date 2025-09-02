@@ -41,6 +41,7 @@ namespace App\Models{
  * @property string $category_slug
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|BlogCategory findSimilarSlugs(string $attribute, array $config, string $slug)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|BlogCategory newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|BlogCategory newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|BlogCategory query()
@@ -49,6 +50,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|BlogCategory whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|BlogCategory whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|BlogCategory whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|BlogCategory withUniqueSlugConstraints(\Illuminate\Database\Eloquent\Model $model, string $attribute, array $config, string $slug)
  */
 	class BlogCategory extends \Eloquent {}
 }
@@ -381,6 +383,7 @@ namespace App\Models{
  * @property string|null $category_id
  * @property string|null $subcategory_id
  * @property string $product_name
+ * @property string|null $slug
  * @property string $thumbnail
  * @property string $price
  * @property string|null $discount_price
@@ -415,6 +418,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereProductCode($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereProductName($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereQuantity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereSubcategoryId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product whereThumbnail($value)
