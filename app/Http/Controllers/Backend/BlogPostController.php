@@ -95,7 +95,7 @@ class BlogPostController extends Controller
         // validate
         $request->validate([
             'category_id' => 'required',
-            'title' => 'required|unique:blog_posts,title',
+            'title' => 'required|unique:blog_posts,title,' . $id,
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'details' => 'required'
         ]);
@@ -125,7 +125,7 @@ class BlogPostController extends Controller
 
         // notification
         notyf()->success('Blog update successfully');
-        return redirect()->route('admin.blog.index');
+        return redirect()->route('admin.blog-post.index');
     }
 
     /**
@@ -149,21 +149,21 @@ class BlogPostController extends Controller
     /**
      * blog status change
      */
-    public function blogstatus(Request $request)
+    public function changeStatus(Request $request)
     {
 
         // return ($request->all());
 
         $blog = BlogPost::findOrFail($request->id);
 
-        if ($blog->status == 1) {
+        if ($blog->status == '1') {
             $blog->update([
-                'status' => 0,
+                'status' => '0',
             ]);
             return response()->json(['deactive' => 'blog Deactive successfully!']);
         } else {
             $blog->update([
-                'status' => 1,
+                'status' => '1',
             ]);
             return response()->json(['active' => 'blog Active successfully!']);
         }

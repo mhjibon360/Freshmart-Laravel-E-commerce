@@ -67,6 +67,8 @@ namespace App\Models{
  * @property string $status 1=active,0=inactive
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\BlogCategory $category
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|BlogPost findSimilarSlugs(string $attribute, array $config, string $slug)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|BlogPost newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|BlogPost newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|BlogPost query()
@@ -80,6 +82,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|BlogPost whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|BlogPost whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|BlogPost whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|BlogPost withUniqueSlugConstraints(\Illuminate\Database\Eloquent\Model $model, string $attribute, array $config, string $slug)
  */
 	class BlogPost extends \Eloquent {}
 }

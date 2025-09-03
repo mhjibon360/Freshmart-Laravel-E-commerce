@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
         // $this->call(SizeSeeder::class);
         // $this->call(ProductSeeder::class);
         // $this->call(CouponSeeder::class);
-        $this->call(BlogCategorySeeder::class);
+        // $this->call(BlogCategorySeeder::class);
+        $this->call(BlogSeeder::class);
     }
 }

@@ -1,5 +1,5 @@
 @extends('backend.layouts.backend-master')
-@section('title', 'product list')
+@section('title', 'blog post list')
 
 @section('content')
     <div class="container">
@@ -9,19 +9,19 @@
                 <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-4">
                     <!-- pageheader -->
                     <div>
-                        <h2>product</h2>
+                        <h2>Blog post</h2>
                         <!-- breacrumb -->
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb mb-0">
                                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}"
                                         class="text-inherit">Dashboard</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">product</li>
+                                <li class="breadcrumb-item active" aria-current="page">Blog post</li>
                             </ol>
                         </nav>
                     </div>
                     <!-- button -->
                     <div>
-                        <a href="{{ route('admin.product.create') }}" class="btn btn-primary">Add New Product</a>
+                        <a href="{{ route('admin.blog-post.create') }}" class="btn btn-primary">Add New Blog Post</a>
                     </div>
                 </div>
             </div>
@@ -38,57 +38,23 @@
                                 class=" table table-centered table-hover mb-0 text-nowrap table-borderless table-with-checkbox">
                                 <thead class="bg-light">
                                     <tr>
-                                        <th>Image</th>
-                                        <th>Proudct Name</th>
+                                        <th>Thumbnail</th>
+                                        <th>Blog Post</th>
                                         <th>Category</th>
-                                        <th>Type</th>
-                                        <th>Price</th>
-                                        <th>Popular</th>
-                                        <th>Best Seller</th>
                                         <th>Status</th>
                                         <th>Create at</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($allproduct as $item)
+                                    @foreach ($allblog as $item)
                                         <tr>
                                             <td>
-                                                <img src="{{ asset($item->thumbnail) }}" alt=""
+                                                <img src="{{ asset($item->image) }}" alt=""
                                                     class="icon-shape icon-md" />
                                             </td>
-                                            <td>{{ $item->product_name }}</td>
+                                            <td>{{ $item->title }}</td>
                                             <td>{{ $item->category->category_name }}</td>
-                                            <td>
-                                                @if ($item->type == 'hot')
-                                                    <span class="badge bg-light-danger text-dark-danger">Hot</span>
-                                                @else
-                                                    <span class="badge bg-light-warning text-dark-warning">Sale</span>
-                                                @endif
-                                            </td>
-
-                                            <td>
-                                                @if ($item->discount_price)
-                                                    <span class="text-success">${{ $item->discount_price }}</span>
-                                                    <span class="text-decoration-line-through">${{ $item->price }}</span>
-                                                @else
-                                                    <span>${{ $item->price }}</span>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                @if ($item->popular_products == '1')
-                                                    <span class="badge bg-light-success text-dark-success">Yes</span>
-                                                @else
-                                                    <span class="badge bg-light-warning text-dark-warning">No</span>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                @if ($item->best_sells == '1')
-                                                    <span class="badge bg-light-info text-dark-info">Yes</span>
-                                                @else
-                                                    <span class="badge bg-light-warning text-dark-warning">No</span>
-                                                @endif
-                                            </td>
                                             <td>
                                                 <input type="checkbox" class="toggle-class btn-sm"
                                                     data-id="{{ $item->id }}" data-toggle="toggle" data-on="Active"
@@ -104,7 +70,7 @@
                                                     </a>
                                                     <ul class="dropdown-menu">
                                                         <li>
-                                                            <form action="{{ route('admin.product.destroy', $item->id) }}"
+                                                            <form action="{{ route('admin.blog-post.destroy', $item->id) }}"
                                                                 method="post">
                                                                 @csrf
                                                                 @method('DELETE')
@@ -116,7 +82,7 @@
                                                         </li>
                                                         <li>
                                                             <a class="dropdown-item"
-                                                                href="{{ route('admin.product.edit', $item->id) }}">
+                                                                href="{{ route('admin.blog-post.edit', $item->id) }}">
                                                                 <i class="bi bi-pencil-square me-3"></i>
                                                                 Edit
                                                             </a>
@@ -147,7 +113,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: route('admin.product.status'),
+                    url: route('admin.blog.status'),
                     data: {
                         status: status,
                         id: id,
