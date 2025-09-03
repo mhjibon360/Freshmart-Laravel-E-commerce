@@ -9,83 +9,58 @@
                         <a class="dropdown-toggle selectValue text-reset" href="javascript:void(0)"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             <span class="me-2">
-                                <svg width="16" height="13" viewBox="0 0 16 13" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <g clip-path="url(#selectedlang)">
-                                        <path d="M0 0.5H16V12.5H0V0.5Z" fill="#012169" />
-                                        <path
-                                            d="M1.875 0.5L7.975 5.025L14.05 0.5H16V2.05L10 6.525L16 10.975V12.5H14L8 8.025L2.025 12.5H0V11L5.975 6.55L0 2.1V0.5H1.875Z"
-                                            fill="white" />
-                                        <path
-                                            d="M10.6 7.525L16 11.5V12.5L9.225 7.525H10.6ZM6 8.025L6.15 8.9L1.35 12.5H0L6 8.025ZM16 0.5V0.575L9.775 5.275L9.825 4.175L14.75 0.5H16ZM0 0.5L5.975 4.9H4.475L0 1.55V0.5Z"
-                                            fill="#C8102E" />
-                                        <path d="M6.025 0.5V12.5H10.025V0.5H6.025ZM0 4.5V8.5H16V4.5H0Z"
-                                            fill="white" />
-                                        <path d="M0 5.325V7.725H16V5.325H0ZM6.825 0.5V12.5H9.225V0.5H6.825Z"
-                                            fill="#C8102E" />
-                                    </g>
-                                    <defs>
-                                        <clipPath id="selectedlang">
-                                            <rect width="16" height="12" fill="white"
-                                                transform="translate(0 0.5)" />
-                                        </clipPath>
-                                    </defs>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-person-lines-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5m.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1z" />
                                 </svg>
                             </span>
-                            English
+                            Account
                         </a>
 
                         <ul class="dropdown-menu">
-                            <li>
-                                <a class="dropdown-item" href="javascript:void(0)">
-                                    <span class="me-2">
-                                        <svg width="16" height="13" viewBox="0 0 16 13" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <g clip-path="url(#selectedlang)">
-                                                <path d="M0 0.5H16V12.5H0V0.5Z" fill="#012169" />
-                                                <path
-                                                    d="M1.875 0.5L7.975 5.025L14.05 0.5H16V2.05L10 6.525L16 10.975V12.5H14L8 8.025L2.025 12.5H0V11L5.975 6.55L0 2.1V0.5H1.875Z"
-                                                    fill="white" />
-                                                <path
-                                                    d="M10.6 7.525L16 11.5V12.5L9.225 7.525H10.6ZM6 8.025L6.15 8.9L1.35 12.5H0L6 8.025ZM16 0.5V0.575L9.775 5.275L9.825 4.175L14.75 0.5H16ZM0 0.5L5.975 4.9H4.475L0 1.55V0.5Z"
-                                                    fill="#C8102E" />
-                                                <path d="M6.025 0.5V12.5H10.025V0.5H6.025ZM0 4.5V8.5H16V4.5H0Z"
-                                                    fill="white" />
-                                                <path d="M0 5.325V7.725H16V5.325H0ZM6.825 0.5V12.5H9.225V0.5H6.825Z"
-                                                    fill="#C8102E" />
-                                            </g>
-                                            <defs>
-                                                <clipPath id="selectedlang">
-                                                    <rect width="16" height="12" fill="white"
-                                                        transform="translate(0 0.5)" />
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
-                                    </span>
-                                    English
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="javascript:void(0)">
-                                    <span class="me-2">
-                                        <svg width="16" height="13" viewBox="0 0 16 13" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <g clip-path="url(#clip0_5543_19751)">
-                                                <path d="M0 8.5H16V12.5H0V8.5Z" fill="#FFCE00" />
-                                                <path d="M0 0.5H16V4.5H0V0.5Z" fill="black" />
-                                                <path d="M0 4.5H16V8.5H0V4.5Z" fill="#DD0000" />
-                                            </g>
-                                            <defs>
-                                                <clipPath id="clip0_5543_19751">
-                                                    <rect width="16" height="12" fill="white"
-                                                        transform="translate(0 0.5)" />
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
-                                    </span>
-                                    Deutsch
-                                </a>
-                            </li>
+                            @if (Auth::check())
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('dashboard') }}">
+                                        <span class="me-2">
+                                            <i class="bi bi-house-door"></i>
+                                        </span>
+                                        Dashboard
+                                    </a>
+                                </li>
+                                <li>
+                                    <form action="{{ route('logout') }}" method="post">
+                                        @csrf
+                                        @method('post')
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                            this.closest('form').submit();">
+                                            <span class="me-2">
+                                               <i class="bi bi-box-arrow-in-right"></i>
+                                            </span>
+                                            Logout
+                                        </a>
+                                    </form>
+                                </li>
+                            @else
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('login') }}">
+                                        <span class="me-2">
+                                            <i class="bi bi-alt"></i>
+                                        </span>
+                                        Login
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('register') }}">
+                                        <span class="me-2">
+                                            <i class="bi bi-person-add"></i>
+                                        </span>
+                                        Register
+                                    </a>
+                                </li>
+                            @endif
+
                         </ul>
                     </div>
                 </div>
@@ -96,12 +71,12 @@
         <div class="container">
             <div class="row w-100 align-items-center gx-lg-2 gx-0">
                 <div class="col-xxl-2 col-lg-3 col-md-6 col-5">
-                    <a class="navbar-brand d-none d-lg-block" href="index.html">
+                    <a class="navbar-brand d-none d-lg-block" href="{{ route('home.index') }}">
                         <img src="{{ asset('frontend') }}/assets/images/logo/freshcart-logo.svg"
                             alt="eCommerce HTML Template" />
                     </a>
                     <div class="d-flex justify-content-between w-100 d-lg-none">
-                        <a class="navbar-brand" href="index.html">
+                        <a class="navbar-brand" href="{{ route('home.index') }}">
                             <img src="{{ asset('frontend') }}/assets/images/logo/freshcart-logo.svg"
                                 alt="eCommerce HTML Template" />
                         </a>
@@ -116,7 +91,8 @@
                                     type="button">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+                                        stroke-linecap="round" stroke-linejoin="round"
+                                        class="feather feather-search">
                                         <circle cx="11" cy="11" r="8"></circle>
                                         <line x1="21" y1="21" x2="16.65" y2="16.65">
                                         </line>

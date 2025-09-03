@@ -85,9 +85,8 @@ class CategoryController extends Controller
 
         // Validate the request
         $request->validate([
-            'icon' => 'required',
-            'heading' => 'required',
-            'details' => 'required',
+            'category_name' => 'required',
+            'image' => 'nullable',
         ]);
 
 
@@ -98,22 +97,23 @@ class CategoryController extends Controller
             $photourl = "upload/categorys/" . $filename;
             $file->move(public_path('upload/categorys/'), $filename);
             // delete the category's image
-            if (file_exists($categorys->icon)) {
-                unlink($categorys->icon);
+            if (file_exists($categorys->category_image)) {
+                unlink($categorys->category_image);
             }
         }
 
         // Create the category
         $categorys->update([
-            'icon' => isset($photourl) ? $photourl : $categorys->icon,
-            'heading' => $request->heading,
-            'details' => $request->details,
+            'category_name' => $request->category_name,
+            'category_image' => isset($photourl) ? $photourl : $categorys->category_image,
+            'featured_category' => $request->featured_category ? '1' : '0',
+            'footer_category' => $request->footer_category ? '1' : '0',
             'updated_at' => now(),
         ]);
 
         // Show a success message
         notyf()->info('category updated successfully.');
-        return to_route('admin.categorys.index');
+        return to_route('admin.product-category.index');
     }
 
     /**

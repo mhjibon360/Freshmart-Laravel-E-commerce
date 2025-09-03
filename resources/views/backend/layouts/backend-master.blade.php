@@ -23,7 +23,7 @@
     <link href="{{ asset('backend/assets/libs/bootstrap-icons/font/bootstrap-icons.min.css') }}" rel="stylesheet">
     <link href="{{ asset('backend/assets/libs/feather-webfont/dist/feather-icons.css') }}" rel="stylesheet">
     <link href="{{ asset('backend/assets/libs/simplebar/dist/simplebar.min.css') }}" rel="stylesheet">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap5-toggle@5.1.1/css/bootstrap5-toggle.min.css"rel="stylesheet">
 
     <!-- Theme CSS -->
     <link rel="stylesheet" href="{{ asset('backend/assets/css/theme.min.css') }}">
@@ -31,7 +31,6 @@
         integrity="sha512-EZSUkJWTjzDlspOoPSpUFR0o0Xy7jdzW//6qhUkoZ9c4StFkVsp9fbbd0O06p9ELS3H486m4wmrCELjza4JEog=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap5-toggle@5.1.2/css/bootstrap5-toggle.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap5.css" />
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
@@ -285,6 +284,7 @@
     <script src="{{ asset('backend/assets/libs/simplebar/dist/simplebar.min.js') }}"></script>
     <script src="{{ asset('backend/assets/libs/quill/dist/quill.min.js') }}"></script>
     <script src="{{ asset('backend/assets/js/vendors/editor.js') }}"></script>
+
     <!-- Theme JS -->
     <script src="{{ asset('backend/assets/js/theme.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"
@@ -292,11 +292,10 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap5-toggle@5.1.2/js/bootstrap5-toggle.ecmas.min.js"></script>
     <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap5.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap5-toggle@5.1.1/js/bootstrap5-toggle.jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
 
     <script>
         $(document).ready(function() {
@@ -307,20 +306,17 @@
             $('.js-example-basic-multiple').select2();
         });
     </script>
+
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            new DataTable('#example', {
-                responsive: true, // Mobile friendly
-                paging: true, // Pagination
-                searching: true, // Search box
-                ordering: true, // Sorting
-                info: true // "Showing 1 to 10 of X entries"
-            });
-        });
+        // new DataTable('#example');
+        //    $('#example').DataTable();
     </script>
 
 
-    </script>
+<script>
+    $('input[data-toggle="toggle"]').bootstrapToggle();
+</script>
+
     <script>
         $('.dropify').dropify({
             messages: {
@@ -331,6 +327,7 @@
             }
         });
     </script>
+
     <script>
         // Page load complete হলে NProgress finish
         $(window).on('load', function() {
@@ -361,6 +358,7 @@
         // Optional: page initially loading
         NProgress.start();
     </script>
+
     @stack('admin_script')
 
     <script>

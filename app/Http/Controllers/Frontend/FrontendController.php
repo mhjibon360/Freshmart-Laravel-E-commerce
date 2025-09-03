@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
+use App\Models\Ads;
+use App\Models\Slider;
+use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Service;
 
 class FrontendController extends Controller
 {
@@ -14,7 +19,15 @@ class FrontendController extends Controller
      */
     public function index()
     {
-        return view('frontend.pages.index');
+        $allsliders = Slider::where('status', 1)->get();
+        $featured_categorys = Category::where('featured_category', 1)->get();
+        $ads = Ads::where('status', 1)->get();
+        $popularproducts = Product::with('category')->where('status', 1)->where('popular_products', 1)->take(10)->get();
+        $bestproducts = Product::with('category')->where('status', 1)->where('best_sells', 1)->take(3)->get();
+        $allservices=Service::get();
+
+        // return($popularproducts);
+        return view('frontend.pages.index', compact(['allsliders', 'featured_categorys', 'ads', 'popularproducts', 'bestproducts', 'allservices']));
     }
 
     /**

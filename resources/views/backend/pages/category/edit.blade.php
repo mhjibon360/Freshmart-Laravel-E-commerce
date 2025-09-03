@@ -1,5 +1,5 @@
 @extends('backend.layouts.backend-master')
-@section('title', 'edit services')
+@section('title', 'add new product category')
 @section('content')
     <!-- container -->
     <div class="container">
@@ -9,27 +9,28 @@
                 <div class="d-md-flex justify-content-between align-items-center">
                     <!-- page header -->
                     <div>
-                        <h2 class=" text-capitalize">services</h2>
+                        <h2 class=" text-capitalize">product category</h2>
                         <!-- breacrumb -->
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb mb-0">
                                 <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}"
                                         class="text-inherit">Dashboard</a></li>
-                                <li class="breadcrumb-item"><a href="javascript::void();" class="text-inherit">services</a>
+                                <li class="breadcrumb-item"><a href="javascript::void();" class="text-inherit">category</a>
                                 </li>
-                                <li class="breadcrumb-item active" aria-current="page">edit services</li>
+                                <li class="breadcrumb-item active" aria-current="page">Add New product category</li>
                             </ol>
                         </nav>
                     </div>
                     <div>
-                        <a href="{{ route('admin.services.index') }}" class="btn btn-light">Back to services</a>
+                        <a href="{{ route('admin.product-category.index') }}" class="btn btn-light">Back to product
+                            category</a>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-12 col-12">
-                <form action="{{ route('admin.services.update', $service->id) }}" method="post"
+                <form action="{{ route('admin.product-category.update', $category->id) }}" method="post"
                     enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
@@ -37,62 +38,71 @@
                     <div class="card mb-6 shadow border-0">
                         <!-- card body -->
                         <div class="card-body p-6">
-                            <h4 class="mb-5 h5">Services Icon Image</h4>
-                            <div class="mb-4 d-flex">
-                                <div class="position-relative">
-                                    <img class="image icon-shape icon-xxxl bg-light rounded-4"
-                                        src="{{ asset($service->icon) }}" alt="Image" />
 
-                                    <div class="file-upload position-absolute end-0 top-0 mt-n2 me-n1">
-                                        <input type="file" name="image" class="file-input" />
-                                        <span class="icon-shape icon-sm rounded-circle bg-white">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
-                                                fill="currentColor" class="bi bi-pencil-fill text-muted"
-                                                viewBox="0 0 16 16">
-                                                <path
-                                                    d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
-                                            </svg>
-                                        </span>
-                                    </div>
-                                    @error('image')
-                                        <span class=" text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <h4 class="mb-4 h5 mt-5">services Information</h4>
+                            <h4 class="mb-4 h5 mt-5">category Information</h4>
                             <div class="row">
                                 <!-- input -->
-                                <div class="mb-3 col-lg-6">
-                                    <label class="form-label text-capitalize" for="icon">services icon <span
-                                            class=" text-info">(class only)</span></label>
-                                    <input type="text" id="icon" class="form-control" placeholder="services icon"
-                                        name="icon" value="{{ $service->icon }}" />
-                                    @error('icon')
-                                        <span class=" text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <!-- input -->
-                                <div class="mb-3 col-lg-6">
-                                    <label class="form-label text-capitalize" for="heading">services heading</label>
-                                    <input type="text" id="heading" class="form-control" placeholder="services heading"
-                                        name="heading" value="{{ $service->heading }}" />
-                                    @error('heading')
-                                        <span class=" text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-
-                                <!-- input -->
                                 <div class="mb-3 col-lg-12">
-                                    <label for="details" class="form-label">Descriptions</label>
-                                    <textarea name="details" class=" form-control" id="details" rows="4">{{ $service->details }}</textarea>
-                                    @error('details')
+                                    <label class="form-label text-capitalize" for="category_name">category name</label>
+                                    <input type="text" id="category_name" class="form-control"
+                                        placeholder="category name" name="category_name"
+                                        value="{{ $category->category_name }}" />
+                                    @error('category_name')
                                         <span class=" text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
-
+                                <h4 class="mb-5 h5">category Image</h4>
+                                <div class="mb-4 d-flex">
+                                    <div class="position-relative">
+                                        <img class="image icon-shape icon-xxxl bg-light rounded-4"
+                                            src="{{ asset($category->category_image) }}" alt="Image" />
+                                        <div class="file-upload position-absolute end-0 top-0 mt-n2 me-n1">
+                                            <input type="file" name="image" class="file-input" />
+                                            <span class="icon-shape icon-sm rounded-circle bg-white">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
+                                                    fill="currentColor" class="bi bi-pencil-fill text-muted"
+                                                    viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
+                                                </svg>
+                                            </span>
+                                        </div>
+                                        @error('image')
+                                            <span class=" text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <hr>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-check">
+                                            <input type="checkbox" checked data-toggle="toggle" id="featured_category"
+                                                data-onstyle="outline-info" data-offstyle="outline-warning" value="1"
+                                                name="featured_category"
+                                                {{ $category->featured_category == 1 ? 'checked' : '' }} />
+                                            <label class="form-check-label" for="featured_category"> Show As Featured
+                                                Category
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-check">
+                                            <input type="checkbox" checked data-toggle="toggle" id="footer_category"
+                                                data-onstyle="outline-primary" data-offstyle="outline-danger" value="1"
+                                                name="footer_category" {{ $category->footer_category == 1 ? 'checked' : '' }} />
+                                            <label class="form-check-label" for="footer_category"> Show As Footer
+                                                Category
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <hr>
                                 <div class="col-lg-12">
-                                    <button type="submit" class="btn btn-primary">Create Services</button>
-                                    <a href="{{ route('admin.services.index') }}" class="btn btn-secondary ms-2">Cancel</a>
+                                    <button type="submit" class="btn btn-primary">Update category</button>
+                                    <a href="{{ route('admin.product-category.index') }}"
+                                        class="btn btn-secondary ms-2">Cancel</a>
                                 </div>
                             </div>
                         </div>
