@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta content="Codescandy" name="author" />
     <title> FreshCart- @yield('title')</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link href="{{ asset('frontend/assets/libs/slick-carousel/slick/slick.css') }}" rel="stylesheet" />
     <link href="{{ asset('frontend/assets/libs/slick-carousel/slick/slick-theme.css') }}" rel="stylesheet" />
@@ -19,12 +20,16 @@
     <link href="{{ asset('frontend/assets/libs/bootstrap-icons/font/bootstrap-icons.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('frontend/assets/libs/feather-webfont/dist/feather-icons.css') }}" rel="stylesheet" />
     <link href="{{ asset('frontend/assets/libs/simplebar/dist/simplebar.min.css') }}" rel="stylesheet" />
-
     <!-- Theme CSS -->
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/theme.min.css') }}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css"
         integrity="sha512-EZSUkJWTjzDlspOoPSpUFR0o0Xy7jdzW//6qhUkoZ9c4StFkVsp9fbbd0O06p9ELS3H486m4wmrCELjza4JEog=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/segment.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.4/jquery.rateyo.min.css"
+        integrity="sha512-JEUoTOcC35/ovhE1389S9NxeGcVLIqOAEzlpcJujvyUaxvIXJN9VxPX0x1TwSo22jCxz2fHQPS1de8NgUyg+nA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    @routes
 </head>
 
 <body>
@@ -70,6 +75,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"
         integrity="sha512-8QFTrG0oeOiyWo/VM9Y8kgxdlCryqhIxVeRpWSezdRRAvarxVtwLnGroJgnVW9/XBRduxO/z1GblzPrMQoeuew=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="{{ asset('frontend/assets/js/segment.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.4/jquery.rateyo.min.js"
+        integrity="sha512-09bUVOnphTvb854qSgkpY/UGKLW9w7ISXGrN0FR/QdXTkjs0D+EfMFMTB+CGiIYvBoFXexYwGUD5FD8xVU89mw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <script>
         $('.dropify').dropify({
             messages: {
@@ -79,7 +90,145 @@
                 'error': 'Ooops, something wrong happended.'
             }
         });
+
+        $(".segment-select").Segment();
+
+        $(function() {
+            $("#product-rating").rateYo({
+                rating: 0, // default rating
+                fullStar: true, // only full stars
+                starWidth: "25px",
+                ratedFill: "#F39C12", // color of filled stars
+                normalFill: "#ddd", // color of empty stars
+                onSet: function(rating, rateYoInstance) {
+                    $("#rating-value").val(rating); // set hidden input value
+                }
+            });
+        });
+
+        $(document).ready(function () {
+            $(document).on('click','#add_image',function(e){
+                e.preventDefault();
+                $('#image_box').toggle();
+            });
+        });
     </script>
+
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
+
+    <script>
+        // ===initail sweet alert message
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            customClass: {
+                popup: 'colored-toast',
+            },
+            showConfirmButton: false,
+            timer: 3500,
+            timerProgressBar: true,
+        })
+        // ===initail sweet alert message end
+
+        // ***************************************** cart all function******************************
+
+        function addToCart(id) {
+            var color = $('#color').val();
+            var size = $('#size').val();
+            var quantity = $('#quantity').val();
+            $.ajax({
+                type: "POST",
+                url: route('add.to.cart'),
+                data: {
+                    id: id,
+                    color: color,
+                    size: size,
+                    quantity: quantity,
+                },
+                dataType: "json",
+                success: function(response) {
+                    if (response.success) {
+                        Toast.fire({
+                            icon: 'success',
+                            title: response.success,
+                        })
+                    } else {
+                        Toast.fire({
+                            icon: 'error',
+                            title: 'Sorry, something is wrong.',
+                        })
+                    }
+                }
+            });
+        }
+
+        // ***************************************** compare all function******************************
+        function addToCompare(id) {
+            $.ajax({
+                type: "POST",
+                url: route('add.to.compare'),
+                data: {
+                    id: id,
+                },
+                dataType: "json",
+                success: function(response) {
+                    if (response.success) {
+                        Toast.fire({
+                            icon: 'success',
+                            title: response.success,
+                        })
+                    } else if (response.warning) {
+                        Toast.fire({
+                            icon: 'warning',
+                            title: response.warning,
+                        })
+                    } else {
+                        Toast.fire({
+                            icon: 'error',
+                            title: response.error,
+                        })
+                    }
+                }
+            });
+        }
+        // ***************************************** wishlist all function******************************
+        function addTowishlist(id) {
+            $.ajax({
+                type: "POST",
+                url: route('add.to.wishlist'),
+                data: {
+                    id: id,
+                },
+                dataType: "json",
+                success: function(response) {
+                    if (response.success) {
+                        Toast.fire({
+                            icon: 'success',
+                            title: response.success,
+                        })
+                    } else if (response.warning) {
+                        Toast.fire({
+                            icon: 'warning',
+                            title: response.warning,
+                        })
+                    } else {
+                        Toast.fire({
+                            icon: 'error',
+                            title: response.error,
+                        })
+                    }
+                }
+            });
+        }
+    </script>
+
+
 </body>
 
 </html>

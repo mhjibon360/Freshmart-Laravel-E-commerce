@@ -103,7 +103,6 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
     Route::resource('/blog-post', BlogPostController::class);
     Route::controller(BlogPostController::class)->group(function () {
         Route::post('/blog-status', 'changeStatus')->name('blog.status');
-
     });
 
     // *****************************************settings *******************

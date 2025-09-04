@@ -405,6 +405,7 @@ namespace App\Models{
  * @property-read int|null $colors_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Size> $sizes
  * @property-read int|null $sizes_count
+ * @property-read \App\Models\Subcategory|null $subcategory
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product findSimilarSlugs(string $attribute, array $config, string $slug)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Product newQuery()
@@ -438,6 +439,7 @@ namespace App\Models{
  * @property int $id
  * @property string|null $user_id
  * @property string|null $product_id
+ * @property string|null $rating
  * @property string $message
  * @property string|null $status 0=pending,1=approved
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -449,11 +451,31 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Review whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Review whereMessage($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Review whereProductId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Review whereRating($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Review whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Review whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Review whereUserId($value)
  */
 	class Review extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * @property int $id
+ * @property string|null $review_id
+ * @property string|null $image
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ReviewImage newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ReviewImage newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ReviewImage query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ReviewImage whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ReviewImage whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ReviewImage whereImage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ReviewImage whereReviewId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ReviewImage whereUpdatedAt($value)
+ */
+	class ReviewImage extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -619,6 +641,8 @@ namespace App\Models{
 namespace App\Models{
 /**
  * @property int $id
+ * @property string|null $user_id
+ * @property string|null $product_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Wishlist newModelQuery()
@@ -626,7 +650,9 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Wishlist query()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Wishlist whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Wishlist whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Wishlist whereProductId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Wishlist whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Wishlist whereUserId($value)
  */
 	class Wishlist extends \Eloquent {}
 }

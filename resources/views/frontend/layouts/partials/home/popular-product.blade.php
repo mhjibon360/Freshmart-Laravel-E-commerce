@@ -25,7 +25,7 @@
                                          <span class="badge bg-warning">Hot</span>
                                      @endif
                                  </div>
-                                 <a href="#!">
+                                 <a href="{{ route('product.details', [$product->id, $product->slug]) }}">
                                      <img src="{{ asset($product->thumbnail) }}" alt="{{ $product->product_name }}"
                                          class="mb-3 img-fluid" /></a>
 
@@ -35,9 +35,11 @@
                                          <i class="bi bi-eye" data-bs-toggle="tooltip" data-bs-html="true"
                                              title="Quick View"></i>
                                      </a>
-                                     <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
+                                     <a type="button" id="{{ $product->id }}" onclick="addTowishlist(this.id)"
+                                         class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
                                          title="Wishlist"><i class="bi bi-heart"></i></a>
-                                     <a href="#!" class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
+                                     <a type="button" id="{{ $product->id }}" onclick="addToCompare(this.id)"
+                                         class="btn-action" data-bs-toggle="tooltip" data-bs-html="true"
                                          title="Compare"><i class="bi bi-arrow-left-right"></i></a>
                                  </div>
                              </div>
@@ -45,17 +47,26 @@
                                  <a href="#!"
                                      class="text-decoration-none text-muted"><small>{{ $product->category->category_name }}</small></a>
                              </div>
-                             <h2 class="fs-6"><a href="pages/shop-single.html"
+                             <h2 class="fs-6"><a href="{{ route('product.details', [$product->id, $product->slug]) }}"
                                      class="text-inherit text-decoration-none">{!! $product->product_name !!}</a></h2>
+                             @php
+                                 $review = App\Models\Review::where('product_id', $product->id)->get();
+                                 $totalreviewcount = count($review);
+                                 $averageRating = $review->avg('rating');
+                             @endphp
                              <div>
                                  <small class="text-warning">
-                                     <i class="bi bi-star-fill"></i>
-                                     <i class="bi bi-star-fill"></i>
-                                     <i class="bi bi-star-fill"></i>
-                                     <i class="bi bi-star-fill"></i>
-                                     <i class="bi bi-star-half"></i>
+                                     @for ($i = 1; $i <= 5; $i++)
+                                         @if ($i <= floor($averageRating))
+                                             <i class="bi bi-star-fill"></i>
+                                         @elseif ($i - $averageRating < 1)
+                                             <i class="bi bi-star-half"></i>
+                                         @else
+                                             <i class="bi bi-star"></i>
+                                         @endif
+                                     @endfor
                                  </small>
-                                 <span class="text-muted small">4.5(149)</span>
+                                 <span class="text-muted small">({{ $totalreviewcount }})</span>
                              </div>
                              <div class="d-flex justify-content-between align-items-center mt-3">
                                  <div>
@@ -68,7 +79,8 @@
                                      @endif
                                  </div>
                                  <div>
-                                     <a href="#!" class="btn btn-primary btn-sm">
+                                     <a type="button" id="{{ $product->id }}" onclick="addToCart(this.id)"
+                                         class="btn btn-primary btn-sm">
                                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                              stroke-linecap="round" stroke-linejoin="round"

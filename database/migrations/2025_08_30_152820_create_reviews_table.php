@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('user_id')->nullable();
             $table->string('product_id')->nullable();
+            $table->string('rating')->nullabe();
             $table->longText('message');
             $table->enum('status', ["0", "1"])->nullable()->default('0')->comment('0=pending,1=approved');
             $table->timestamps();

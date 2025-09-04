@@ -24,9 +24,8 @@ class FrontendController extends Controller
         $ads = Ads::where('status', 1)->get();
         $popularproducts = Product::with('category')->where('status', 1)->where('popular_products', 1)->take(10)->get();
         $bestproducts = Product::with('category')->where('status', 1)->where('best_sells', 1)->take(3)->get();
-        $allservices=Service::get();
+        $allservices = Service::get();
 
-        // return($popularproducts);
         return view('frontend.pages.index', compact(['allsliders', 'featured_categorys', 'ads', 'popularproducts', 'bestproducts', 'allservices']));
     }
 
@@ -35,9 +34,11 @@ class FrontendController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function productDetails()
+    public function productDetails($id, $slug)
     {
-        return view('frontend.pages.product-details');
+        $product = Product::with(['category', 'subcategory', 'colors', 'sizes'])->find($id);
+        $relatedproduct = Product::with(['category', 'subcategory', 'colors', 'sizes'])->where('status', 1)->where('category_id', $product->category_id)->where('id', '!=', $id)->take(10)->get();
+        return view('frontend.pages.product-details', compact(['product', 'relatedproduct']));
     }
 
     /**
