@@ -30,7 +30,7 @@
                                          class="mb-3 img-fluid" /></a>
 
                                  <div class="card-product-action">
-                                     <a href="#!" class="btn-action" data-bs-toggle="modal"
+                                     <a type="button" id="{{ $product->id }}" onclick="productView(this.id)" class="btn-action" data-bs-toggle="modal"
                                          data-bs-target="#quickViewModal">
                                          <i class="bi bi-eye" data-bs-toggle="tooltip" data-bs-html="true"
                                              title="Quick View"></i>

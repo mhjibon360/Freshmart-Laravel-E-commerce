@@ -22,6 +22,7 @@ Route::controller(FrontendController::class)->group(function () {
     Route::get('/blog/category', 'blogcategory')->name('blog.category');
     Route::get('/wishlist', 'wishlist')->name('wishlist');
     Route::get('/compare', 'compare')->name('compare');
+    Route::get('quick/view', 'quickView')->name('quick.view');
 });
 
 Route::controller(CartController::class)->group(function () {
@@ -32,12 +33,10 @@ Route::controller(CartController::class)->group(function () {
 });
 
 /** wishlist all routes */
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::controller(WishlistController::class)->group(function () {
-        Route::post('/add/to/wishlist', 'addToWishlist')->name('add.to.wishlist');
-        Route::get('/get/product/wishlist', 'getproductWishlist')->name('get.product.wishlist');
-        Route::get('/remove/product/wishlist', 'removeproductwishlist')->name('remove.product.wishlist');
-    });
+Route::controller(WishlistController::class)->group(function () {
+    Route::post('/add/to/wishlist', 'addToWishlist')->name('add.to.wishlist');
+    Route::get('/get/product/wishlist', 'getproductWishlist')->name('get.product.wishlist');
+    Route::get('/remove/product/wishlist', 'removeproductwishlist')->name('remove.product.wishlist');
 });
 
 /** compare all routes */

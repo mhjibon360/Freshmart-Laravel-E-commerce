@@ -130,4 +130,12 @@ class FrontendController extends Controller
     {
         return view('frontend.pages.compare');
     }
+    /**
+     * quick view modal
+     */
+    public function quickView(Request $request)
+    {
+        $product = Product::with(['category', 'subcategory', 'colors', 'sizes'])->find($request->id);
+        return view('frontend.layouts.inc.quick-product-modal', compact('product'));
+    }
 }
