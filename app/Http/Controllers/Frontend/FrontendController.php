@@ -12,6 +12,7 @@ use App\Models\Category;
 use App\Models\Subcategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\BlogPost;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
 
@@ -128,7 +129,9 @@ class FrontendController extends Controller
      */
     public function blog()
     {
-        return view('frontend.pages.blog');
+        $allblogs = BlogPost::with(['category', 'user'])->where('status', 1)->orderBy('id', 'asc')->paginate(10);
+        // return($allblogs);
+        return view('frontend.pages.blog', compact('allblogs'));
     }
 
     /**
@@ -136,9 +139,10 @@ class FrontendController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function blogdetails()
+    public function blogdetails($slug)
     {
-        return view('frontend.pages.blog-details');
+        $blog = BlogPost::with(['category', 'user'])->where('slug', $slug)->first();
+        return view('frontend.pages.blog-details', compact('blog'));
     }
 
     /**

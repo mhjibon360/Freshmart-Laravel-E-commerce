@@ -68,6 +68,7 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\BlogCategory $category
+ * @property-read \App\Models\User $user
  * @method static \Illuminate\Database\Eloquent\Builder<static>|BlogPost findSimilarSlugs(string $attribute, array $config, string $slug)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|BlogPost newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|BlogPost newQuery()
