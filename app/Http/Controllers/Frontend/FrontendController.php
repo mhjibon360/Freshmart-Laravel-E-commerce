@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Models\Ads;
+use App\Models\Size;
+use App\Models\Color;
 use App\Models\Slider;
 use App\Models\Product;
+use App\Models\Service;
 use App\Models\Category;
+use App\Models\Subcategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Service;
 
 class FrontendController extends Controller
 {
@@ -46,9 +49,14 @@ class FrontendController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function shop()
+    public function shop(Request $request)
     {
-        return view('frontend.pages.shop');
+        $allshopproducts = Product::with(['category', 'subcategory', 'colors', 'sizes'])->where('status', 1)->paginate(100);
+        $allcategorys = Category::with('subcategories')->orderBy('category_name', 'asc')->get();
+        $allcolors = Color::orderBy('color_name', 'asc')->get();
+        $allsize = Size::orderBy('size_name', 'asc')->get();
+        // return($allcategorys);
+        return view('frontend.pages.shop', compact(['allshopproducts', 'allcategorys', 'allcolors', 'allsize']));
     }
 
     /**
@@ -81,6 +89,18 @@ class FrontendController extends Controller
         $category = Category::where('category_slug', $category_slug)->firstOrFail();
         $categoryproducts = Product::with(['category', 'subcategory', 'colors', 'sizes'])->where('status', 1)->where('category_id', $category->id)->paginate(15);
         return view('frontend.pages.category', compact(['category', 'categoryproducts']));
+    }
+
+    /**
+     * Show the category page.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function subcategory($subcategory_slug)
+    {
+        $subcategory = Subcategory::where('subcategory_slug', $subcategory_slug)->firstOrFail();
+        $subcategoryproducts = Product::with(['category', 'subcategory', 'colors', 'sizes'])->where('status', 1)->where('subcategory_id', $subcategory->id)->paginate(15);
+        return view('frontend.pages.subcategory', compact(['subcategory', 'subcategoryproducts']));
     }
 
     /**

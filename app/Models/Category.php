@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Subcategory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 
@@ -17,5 +18,9 @@ class Category extends Model
                 'source' => 'category_name'
             ]
         ];
+    }
+    public function subcategories()
+    {
+        return $this->hasMany(Subcategory::class);
     }
 }

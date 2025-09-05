@@ -17,6 +17,7 @@ Route::controller(FrontendController::class)->group(function () {
     Route::get('/cart', 'cart')->name('cart');
     Route::get('/checkout', 'checkout')->name('checkout');
     Route::get('/category/{category_slug}', 'category')->name('category');
+    Route::get('/subcategory/{subcategory_slug}', 'subcategory')->name('subcategory');
     Route::get('/blog', 'blog')->name('blog');
     Route::get('/blog/details', 'blogdetails')->name('blog.details');
     Route::get('/blog/category', 'blogcategory')->name('blog.category');
