@@ -12,6 +12,8 @@ use App\Models\Category;
 use App\Models\Subcategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Spatie\QueryBuilder\QueryBuilder;
+use Spatie\QueryBuilder\AllowedFilter;
 
 class FrontendController extends Controller
 {
@@ -51,11 +53,27 @@ class FrontendController extends Controller
      */
     public function shop(Request $request)
     {
-        $allshopproducts = Product::with(['category', 'subcategory', 'colors', 'sizes'])->where('status', 1)->paginate(100);
+
+        // return($request->all());
+
         $allcategorys = Category::with('subcategories')->orderBy('category_name', 'asc')->get();
         $allcolors = Color::orderBy('color_name', 'asc')->get();
         $allsize = Size::orderBy('size_name', 'asc')->get();
-        // return($allcategorys);
+        // QueryBuilder with filter
+        $allshopproducts = QueryBuilder::for(Product::class)
+            ->with(['category', 'subcategory', 'colors', 'sizes'])
+            ->allowedFilters([
+                AllowedFilter::exact('colors.id'),  // filter by color id
+                AllowedFilter::exact('sizes.id'),   // filter by size id (optional)
+                AllowedFilter::exact('category_id') // filter by category id (optional)
+            ])
+            ->when($request->price_min && $request->price_max, function ($query) use ($request) {
+                $query->whereBetween('price', [$request->price_min, $request->price_max]);
+            })
+            ->where('status', 1)
+            ->paginate(100);
+
+        // return ($filterproducts);
         return view('frontend.pages.shop', compact(['allshopproducts', 'allcategorys', 'allcolors', 'allsize']));
     }
 

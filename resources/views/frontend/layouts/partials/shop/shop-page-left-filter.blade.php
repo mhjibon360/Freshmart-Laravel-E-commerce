@@ -46,53 +46,104 @@
                 </ul>
             </div>
 
-            <div class="mb-8">
-                <h5 class="mb-3">Color</h5>
+            <form method="GET" action="{{ route('shop') }}">
+                @csrf
+                @method('GET')
+                <div class="mb-8">
+                    <h5 class="mb-3">Color</h5>
 
-                <!-- form check -->
-                @foreach ($allcolors as $color)
-                    <div class="form-check mb-2">
-                        <!-- input -->
-                        <input class="form-check-input" type="checkbox" value="{{ $color->color_name }}"
-                            id="eGrocery-{{ $color->id }}" />
-                        <label class="form-check-label"
-                            for="eGrocery-{{ $color->id }}">{{ $color->color_name }}</label>
-                    </div>
-                @endforeach
-            </div>
+                    <!-- form check -->
+                    @foreach ($allcolors as $color)
+                        <div class="form-check mb-2">
+                            <!-- input -->
+                            <input name="filter[colors.id][]" class="form-check-input" type="checkbox"
+                                value="{{ $color->id }}" id="eGrocery-{{ $color->id }}"
+                                {{ in_array($color->id, request()->input('filter.colors.id', [])) ? 'checked' : '' }} />
+                            <label class="form-check-label"
+                                for="eGrocery-{{ $color->id }}">{{ $color->color_name }}</label>
+                        </div>
+                    @endforeach
+                </div>
 
-            <div class="mb-8">
-                <h5 class="mb-3">Size</h5>
+                <div class="mb-8">
+                    <h5 class="mb-3">Size</h5>
 
-                <!-- form check -->
-                @foreach ($allsize as $size)
-                    <div class="form-check mb-2">
-                        <!-- input -->
-                        <input class="form-check-input" type="checkbox" value="{{ $size->size_name }}"
-                            id="size-{{ $size->id }}" />
-                        <label class="form-check-label" for="size-{{ $size->id }}">{{ $size->size_name }}</label>
-                    </div>
-                @endforeach
-            </div>
+                    <!-- form check -->
+                    @foreach ($allsize as $size)
+                        <div class="form-check mb-2">
+                            <!-- input -->
+                            <input name="filter[sizes.id][]" class="form-check-input" type="checkbox"
+                                value="{{ $size->id }}" id="size-{{ $size->id }}"
+                                {{ in_array($size->id, request()->input('filter.sizes.id', [])) ? 'checked' : '' }} />
+                            <label class="form-check-label"
+                                for="size-{{ $size->id }}">{{ $size->size_name }}</label>
+                        </div>
+                    @endforeach
+                </div>
 
-            <div class="mb-8">
-                <!-- price -->
-                <h5 class="mb-3">Price</h5>
-                <div>
-                    <!-- range -->
+                @php
+                    $minPrice = \App\Models\Product::where('status', 1)->min('price') ?? 0;
+                    $maxPrice = \App\Models\Product::where('status', 1)->max('price') ?? 1000;
+                @endphp
+                <div class="mb-8">
+                    <h5 class="mt-3">Price</h5>
                     <div id="priceRange" class="mb-3"></div>
                     <small class="text-muted">Price:</small>
                     <span id="priceRange-value" class="small"></span>
+
+                    <!-- Hidden inputs with dynamic default -->
+                    <input type="hidden" name="price_min" id="price_min"
+                        value="{{ request('price_min', $minPrice) }}">
+                    <input type="hidden" name="price_max" id="price_max"
+                        value="{{ request('price_max', $maxPrice) }}">
                 </div>
-            </div>
+                <div class="my-3">
+                    <button type="submit" class="btn btn-primary">Apply Filter</button>
+                </div>
+            </form>
 
             <div class="mb-8 position-relative">
                 <!-- Banner Design -->
                 <!-- Banner Content -->
                 <!-- Advertisement-->
-               @include('frontend.layouts.partials.random-ads')
+                @include('frontend.layouts.partials.random-ads')
                 <!-- Banner Content -->
             </div>
         </div>
     </div>
 </aside>
+@push('frontend-script')
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.0/nouislider.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.0/nouislider.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.2.0/wNumb.min.js"></script>
+    <script>
+        var l = document.getElementById("priceRange");
+        if (l) {
+            noUiSlider.create(l, {
+                connect: true,
+                behaviour: "tap",
+                start: [
+                    {{ request('price_min', $minPrice) }},
+                    {{ request('price_max', $maxPrice) }}
+                ],
+                range: {
+                    min: {{ $minPrice }},
+                    max: {{ $maxPrice }}
+                },
+                format: wNumb({
+                    decimals: 0
+                })
+            });
+
+            var s = document.getElementById("priceRange-value");
+            var inputMin = document.getElementById("price_min");
+            var inputMax = document.getElementById("price_max");
+
+            l.noUiSlider.on("update", function(values) {
+                s.innerHTML = "$" + values[0] + " - $" + values[1];
+                inputMin.value = Math.floor(values[0]);
+                inputMax.value = Math.floor(values[1]);
+            });
+        }
+    </script>
+@endpush
