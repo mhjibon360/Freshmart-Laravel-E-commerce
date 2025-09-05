@@ -1,3 +1,6 @@
+@php
+    $categories = App\Models\Category::orderBy('category_name', 'ASC')->get();
+@endphp
 <div class="border-bottom">
     <div class="bg-light py-1">
         <div class="container">
@@ -36,7 +39,7 @@
                                             onclick="event.preventDefault();
                                             this.closest('form').submit();">
                                             <span class="me-2">
-                                               <i class="bi bi-box-arrow-in-right"></i>
+                                                <i class="bi bi-box-arrow-in-right"></i>
                                             </span>
                                             Logout
                                         </a>
@@ -91,8 +94,7 @@
                                     type="button">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round"
-                                        class="feather feather-search">
+                                        stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
                                         <circle cx="11" cy="11" r="8"></circle>
                                         <line x1="21" y1="21" x2="16.65" y2="16.65">
                                         </line>
@@ -234,20 +236,17 @@
                         <div class="collapse mt-2" id="collapseExample">
                             <div class="card card-body">
                                 <ul class="mb-0 list-unstyled">
-                                    <li><a class="dropdown-item" href="pages/shop-grid.html">Dairy, Bread &
-                                            Eggs</a></li>
-                                    <li><a class="dropdown-item" href="pages/shop-grid.html">Snacks & Munchies</a>
+                                    @foreach ($categories as $category)
+                                        <li>
+                                            <a class="dropdown-item"
+                                                href="{{ route('category', $category->category_slug) }}">{{ $category->name }}</a>
+                                        </li>
+                                    @endforeach
+                                    <li>
+                                        <a class="dropdown-item" href="pages/shop-grid.html">Dairy, Bread &
+                                            Eggs</a>
                                     </li>
-                                    <li><a class="dropdown-item" href="pages/shop-grid.html">Fruits &
-                                            Vegetables</a></li>
-                                    <li><a class="dropdown-item" href="pages/shop-grid.html">Cold Drinks &
-                                            Juices</a></li>
-                                    <li><a class="dropdown-item" href="pages/shop-grid.html">Breakfast & Instant
-                                            Food</a></li>
-                                    <li><a class="dropdown-item" href="pages/shop-grid.html">Bakery & Biscuits</a>
-                                    </li>
-                                    <li><a class="dropdown-item" href="pages/shop-grid.html">Chicken, Meat &
-                                            Fish</a></li>
+
                                 </ul>
                             </div>
                         </div>
@@ -268,14 +267,12 @@
                             All Departments
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="pages/shop-grid.html">Dairy, Bread & Eggs</a></li>
-                            <li><a class="dropdown-item" href="pages/shop-grid.html">Snacks & Munchies</a></li>
-                            <li><a class="dropdown-item" href="pages/shop-grid.html">Fruits & Vegetables</a></li>
-                            <li><a class="dropdown-item" href="pages/shop-grid.html">Cold Drinks & Juices</a></li>
-                            <li><a class="dropdown-item" href="pages/shop-grid.html">Breakfast & Instant Food</a>
-                            </li>
-                            <li><a class="dropdown-item" href="pages/shop-grid.html">Bakery & Biscuits</a></li>
-                            <li><a class="dropdown-item" href="pages/shop-grid.html">Chicken, Meat & Fish</a></li>
+                            @foreach ($categories as $category)
+                                <li>
+                                    <a class="dropdown-item"
+                                        href="{{ route('category', $category->category_slug) }}">{{ $category->category_name }}</a>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
                     <div>

@@ -76,9 +76,11 @@ class FrontendController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function category()
+    public function category($category_slug)
     {
-        return view('frontend.pages.category');
+        $category = Category::where('category_slug', $category_slug)->firstOrFail();
+        $categoryproducts = Product::with(['category', 'subcategory', 'colors', 'sizes'])->where('status', 1)->where('category_id', $category->id)->paginate(15);
+        return view('frontend.pages.category', compact(['category', 'categoryproducts']));
     }
 
     /**
