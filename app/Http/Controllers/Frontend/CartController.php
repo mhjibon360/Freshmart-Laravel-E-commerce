@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Models\Coupon;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
 class CartController extends Controller
@@ -43,6 +45,23 @@ class CartController extends Controller
                 'slug' => $product->slug,
             ]
         ]);
+
+        if (Session::has('coupon')) {
+            $coupon_name = Session::get('coupon')['coupon_name'];
+            $coupon = Coupon::where('coupon_name', $coupon_name)->first();
+            // Cart এর numeric total
+            $cartTotal = (float) Cart::total(0, '', '');
+
+            $discountAmount = $cartTotal * $coupon->coupon_discount / 100;
+            $totalAfterDiscount = $cartTotal - $discountAmount;
+
+            Session::put('coupon', [
+                'coupon_name'     => $coupon->coupon_name,
+                'coupon_discount' => $coupon->coupon_discount,
+                'discount_amount' => round($discountAmount, 2),
+                'total_amount'    => round($totalAfterDiscount, 2),
+            ]);
+        }
 
         return response()->json(['success' => 'Item successfully added to cart!']);
 
@@ -87,6 +106,24 @@ class CartController extends Controller
     public function removeCartProduct(Request $request)
     {
         Cart::remove($request->rowId);
+
+              if (Session::has('coupon')) {
+            $coupon_name = Session::get('coupon')['coupon_name'];
+            $coupon = Coupon::where('coupon_name', $coupon_name)->first();
+            // Cart এর numeric total
+            $cartTotal = (float) Cart::total(0, '', '');
+
+            $discountAmount = $cartTotal * $coupon->coupon_discount / 100;
+            $totalAfterDiscount = $cartTotal - $discountAmount;
+
+            Session::put('coupon', [
+                'coupon_name'     => $coupon->coupon_name,
+                'coupon_discount' => $coupon->coupon_discount,
+                'discount_amount' => round($discountAmount, 2),
+                'total_amount'    => round($totalAfterDiscount, 2),
+            ]);
+        }
+
         return response()->json(['success' => 'Item successfully remove to cart!']);
     }
 
@@ -95,7 +132,26 @@ class CartController extends Controller
      */
     public function incrementCartProduct(Request $request)
     {
+
         Cart::update($request->rowId, Cart::get($request->rowId)->qty + 1);
+
+        if (Session::has('coupon')) {
+            $coupon_name = Session::get('coupon')['coupon_name'];
+            $coupon = Coupon::where('coupon_name', $coupon_name)->first();
+            // Cart এর numeric total
+            $cartTotal = (float) Cart::total(0, '', '');
+
+            $discountAmount = $cartTotal * $coupon->coupon_discount / 100;
+            $totalAfterDiscount = $cartTotal - $discountAmount;
+
+            Session::put('coupon', [
+                'coupon_name'     => $coupon->coupon_name,
+                'coupon_discount' => $coupon->coupon_discount,
+                'discount_amount' => round($discountAmount, 2),
+                'total_amount'    => round($totalAfterDiscount, 2),
+            ]);
+        }
+
         return response()->json(['success' => 'Item successfully inrement to cart!']);
     }
 
@@ -105,6 +161,22 @@ class CartController extends Controller
     public function decrementCartProduct(Request $request)
     {
         Cart::update($request->rowId, Cart::get($request->rowId)->qty - 1);
+        if (Session::has('coupon')) {
+            $coupon_name = Session::get('coupon')['coupon_name'];
+            $coupon = Coupon::where('coupon_name', $coupon_name)->first();
+            // Cart এর numeric total
+            $cartTotal = (float) Cart::total(0, '', '');
+
+            $discountAmount = $cartTotal * $coupon->coupon_discount / 100;
+            $totalAfterDiscount = $cartTotal - $discountAmount;
+
+            Session::put('coupon', [
+                'coupon_name'     => $coupon->coupon_name,
+                'coupon_discount' => $coupon->coupon_discount,
+                'discount_amount' => round($discountAmount, 2),
+                'total_amount'    => round($totalAfterDiscount, 2),
+            ]);
+        }
         return response()->json(['success' => 'Item successfully decrement to cart!']);
     }
 

@@ -3,7 +3,10 @@
      <div class="mb-5 card mt-6">
          <div class="card-body p-6">
              <!-- heading -->
-             <h2 class="h5 mb-4">Summary</h2>
+             <div class=" cart_calculation" id="cart_calculation">
+
+             </div>
+             {{-- <h2 class="h5 mb-4">Summary</h2>
              <div class="card mb-2">
                  <!-- list group -->
                  <ul class="list-group list-group-flush">
@@ -38,7 +41,8 @@
                      Go to Checkout
                      <span class="fw-bold">$67.00</span>
                  </button>
-             </div>
+             </div> --}}
+
              <!-- text -->
              <p>
                  <small>

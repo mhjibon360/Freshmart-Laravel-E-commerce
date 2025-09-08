@@ -218,9 +218,9 @@
                               <div class="input-group input-spinner">
                                 ${value.qty>1?
                                 `<input type="button" value="-" class="button-minus btn btn-sm"
-                                                                  data-field="quantity" id="${value.rowId}" onclick="decrementCartItem(this.id)" />`:
+                                                                                              data-field="quantity" id="${value.rowId}" onclick="decrementCartItem(this.id)" />`:
                                 `<input type="button" disabled value="-" class="button-minus btn btn-sm disabled"
-                                                                  data-field="quantity" id="${value.rowId}" onclick="decrementCartItem(this.id)" />`}
+                                                                                              data-field="quantity" id="${value.rowId}" onclick="decrementCartItem(this.id)" />`}
                                   <input type="number" step="1" max="10" value="${value.qty}" name="quantity"
                                       class="quantity-field form-control-sm form-input"  />
                                   <input type="button" value="+" class="button-plus btn btn-sm"
@@ -299,9 +299,9 @@
                               <div class="input-group input-spinner">
                                 ${value.qty>1?
                                 `<input type="button" value="-" class="button-minus btn btn-sm"
-                                                                  data-field="quantity" id="${value.rowId}" onclick="decrementCartItem(this.id)" />`:
+                                                                                              data-field="quantity" id="${value.rowId}" onclick="decrementCartItem(this.id)" />`:
                                 `<input type="button" disabled value="-" class="button-minus btn btn-sm disabled"
-                                                                  data-field="quantity" id="${value.rowId}" onclick="decrementCartItem(this.id)" />`}
+                                                                                              data-field="quantity" id="${value.rowId}" onclick="decrementCartItem(this.id)" />`}
                                   <input type="number" step="1" max="10" value="${value.qty}" name="quantity"
                                       class="quantity-field form-control-sm form-input"  />
                                   <input type="button" value="+" class="button-plus btn btn-sm"
@@ -343,6 +343,7 @@
                 success: function(response) {
                     Cart(); //calling cart
                     miniCart(); //calling mini cart
+                    couponcalclation();
                     if (response.success) {
                         Toast.fire({
                             icon: 'success',
@@ -370,6 +371,7 @@
                 success: function(response) {
                     Cart(); //calling cart
                     miniCart(); //calling mini cart
+                    couponcalclation();
                     if (response.success) {
                         Toast.fire({
                             icon: 'success',
@@ -397,6 +399,7 @@
                 success: function(response) {
                     Cart(); //calling cart
                     miniCart(); //calling mini cart
+                    couponcalclation();
                     if (response.success) {
                         Toast.fire({
                             icon: 'success',
@@ -424,6 +427,7 @@
                 success: function(response) {
                     miniCart(); //calling mini cart
                     Cart(); //calling cart
+                    couponcalclation();
                     if (response.success) {
                         Toast.fire({
                             icon: 'warning',
@@ -448,6 +452,7 @@
                 success: function(response) {
                     Cart(); //calling cart
                     miniCart(); //calling mini cart
+                    couponcalclation();
                     if (response.success) {
                         Toast.fire({
                             icon: 'warning',
@@ -544,11 +549,11 @@
                             <td class="align-middle">
                                 ${value.product.quantity>0 ?
                                 `
-                                                                                                                    <span class="badge bg-success">In Stock</span>
-                                                                                                                    `:
+                                                                                                                                                <span class="badge bg-success">In Stock</span>
+                                                                                                                                                `:
                                 `
-                                                                                                                     <span class="badge bg-danger">Out of Stock</span>
-                                                                                                                    `}
+                                                                                                                                                 <span class="badge bg-danger">Out of Stock</span>
+                                                                                                                                                `}
 
                             </td>
                             <td class="align-middle">
@@ -640,10 +645,119 @@
                 dataType: "json",
                 success: function(response) {
                     if (response.success) {
+                        couponcalclation();
                         $('.session_apply_area').hide();
                         Toast.fire({
                             icon: 'success',
                             title: response.success,
+                        })
+                    } else {
+                        Toast.fire({
+                            icon: 'error',
+                            title: response.error,
+                        })
+                    }
+                }
+            });
+        }
+
+        // coupon calculation
+        function couponcalclation() {
+            $.ajax({
+                type: "GET",
+                url: route('coupon.calculation'),
+                // data: "data",
+                dataType: "json",
+                success: function(response) {
+                    if (response.yes_coupon === true) {
+                        $('.cart_calculation').html(`
+                         <h2 class="h5 mb-4">Summary</h2>
+                        <div class="card mb-2">
+                            <!-- list group -->
+                            <ul class="list-group list-group-flush">
+                                <!-- list group item -->
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="me-auto">
+                                        <div>Coupon Name</div>
+                                    </div>
+                                    <span class="badge bg-light-primary text-dark-primary">${response.coupon_name}</span>
+                                    <span class="ml-2 ms-2 badge bg-light-danger text-dark-danger cursor-pointer" onclick="removeCoupon()" style="cursor:pointer;"><i class="bi bi-trash"></i></span>
+                                </li>
+
+                                <!-- list group item -->
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="me-auto">
+                                        <div>Coupon Discount</div>
+                                    </div>
+                                    <span class="badge bg-light-warning text-dark-warning">${response.coupon_discount}%</span>
+                                </li>
+                                <!-- list group item -->
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="me-auto">
+                                        <div class="fw-bold">Discount Amount</div>
+                                    </div>
+                                    <span class="fw-bold">$${response.discount_amount}</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="me-auto">
+                                        <div class="fw-bold">Total Amount</div>
+                                    </div>
+                                    <span class="fw-bold">$${response.total_amount}</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="d-grid mb-1 mt-4">
+                            <!-- btn -->
+                            <button class="btn btn-primary btn-lg d-flex justify-content-between align-items-center"
+                                type="submit">
+                                Go to Checkout
+                                <span class="fw-bold">$${response.total_amount}</span>
+                            </button>
+                        </div>
+                        `);
+                    } else {
+                        $('.cart_calculation').html(`
+                         <h2 class="h5 mb-4">Summary</h2>
+                        <div class="card mb-2">
+                            <!-- list group -->
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    <div class="me-auto">
+                                        <div class="fw-bold">Total Amount</div>
+                                    </div>
+                                    <span class="fw-bold">$${response.total_amount}</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="d-grid mb-1 mt-4">
+                            <!-- btn -->
+                            <button class="btn btn-primary btn-lg d-flex justify-content-between align-items-center"
+                                type="submit">
+                                Go to Checkout
+                                <span class="fw-bold">$${response.total_amount}</span>
+                            </button>
+                        </div>
+                        `);
+                    }
+                }
+            });
+        }
+        couponcalclation();
+
+        // remove coupon
+        function removeCoupon() {
+            $.ajax({
+                type: "POST",
+                url: route('coupon.remove'),
+                // data: "data",
+                // dataType: "dataType",
+                success: function(response) {
+                    if (response) {
+                        couponcalclation();
+                        $('.session_apply_area').show();
+                        Toast.fire({
+                            icon: 'success',
+                            title: response,
                         })
                     } else {
                         Toast.fire({

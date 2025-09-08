@@ -55,6 +55,8 @@ Route::controller(CompareController::class)->group(function () {
 
 Route::controller(CouponController::class)->group(function () {
     Route::post('coupon/apply', 'couponapply')->name('coupon.apply');
+    Route::get('/coupon/calculation', 'couponcalculation')->name('coupon.calculation');
+    Route::post('/coupon/remove', 'couponremove')->name('coupon.remove');
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
