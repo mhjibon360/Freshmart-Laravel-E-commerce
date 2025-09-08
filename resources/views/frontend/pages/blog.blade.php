@@ -54,7 +54,7 @@
                                 <span>
                                     <small>
                                         Read time:
-                                        <span class="text-dark fw-bold">6min</span>
+                                        <span class="text-dark fw-bold">{{ $blog->created_at->diffForHumans() }}</span>
                                     </small>
                                 </span>
                             </div>
@@ -75,20 +75,22 @@
                             </a>
                         </div>
                         <!-- text -->
-                        <div class="mb-3"><a
-                                href="">{{ $blog->category->category_name }}</a>
+                        <div class="mb-3">
+                            <a
+                                href="{{ route('blog.category', $blog->category->category_slug) }}">{{ $blog->category->category_name }}</a>
                         </div>
                         <!-- text -->
                         <div>
-                            <h2 class="h5"><a href="{{ route('blog.details',$blog->slug) }}" class="text-inherit">{{ $blog->title }}</a>
+                            <h2 class="h5"><a href="{{ route('blog.details', $blog->slug) }}"
+                                    class="text-inherit">{{ $blog->title }}</a>
                             </h2>
                             <p>I {!! Str::words($blog->details, '100', '') !!}</p>
                             <div class="d-flex justify-content-between text-muted mt-4">
                                 <span><small>22 April 2023</small></span>
                                 <span>
                                     <small>
-                                        Read time:
-                                        <span class="text-dark fw-bold">12min</span>
+                                        Published:
+                                        <span class="text-dark fw-bold">{{ $blog->created_at->diffForHumans() }}</span>
                                     </small>
                                 </span>
                             </div>

@@ -9,7 +9,42 @@ use Illuminate\Support\Facades\Auth;
 
 class WishlistController extends Controller
 {
-   /** add to wishlist */
+
+    /**
+     * Show the wishlist page.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function wishlist()
+    {
+        return view('frontend.pages.wishlist');
+    }
+    /**
+     * Show the wishlist product in ajax.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function wishlistproducts()
+    {
+        $wishlists = Wishlist::with('product')->where('user_id', Auth::id())->get();
+        return response()->json([
+            'wishlists' => $wishlists,
+            'wishlistcount' => count($wishlists),
+        ]);
+    }
+    /**
+     * Show the wishlist product in ajax.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function topwishlistcounter()
+    {
+        $wishlists = Wishlist::with('product')->where('user_id', Auth::id())->get();
+        return response()->json(count($wishlists));
+    }
+
+
+    /** add to wishlist */
     public function  addToWishlist(Request $request)
     {
         if (Auth::check()) {
@@ -28,5 +63,14 @@ class WishlistController extends Controller
         } else {
             return response()->json(['error' => 'Please login to add to wishlist']);
         }
+    }
+
+    /**
+     * remove wishlist
+     */
+    public function removeproductwishlist(Request $request)
+    {
+        Wishlist::where('id', $request->id)->delete();
+        return response()->json('successfully remove to wishlist');
     }
 }

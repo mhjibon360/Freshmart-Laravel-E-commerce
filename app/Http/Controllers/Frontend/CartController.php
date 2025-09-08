@@ -9,6 +9,18 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 
 class CartController extends Controller
 {
+
+
+    /**
+     * Show the cart page.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function cart()
+    {
+        return view('frontend.pages.cart');
+    }
+
     /**
      * addToCart
      */
@@ -37,12 +49,36 @@ class CartController extends Controller
         // Validate and add the product to the cart
     }
 
+
+
+    /**
+     * get mini cart product
+     */
+    public function getminicartProduct(Request $request)
+    {
+        $carts = Cart::content();
+        $Carttotal = Cart::total();
+        $cartcount = Cart::count();
+        return response()->json([
+            'carts' => $carts,
+            'Carttotal' => $Carttotal,
+            'cartcount' => $cartcount,
+        ]);
+    }
+
     /**
      * getCartProduct
      */
     public function getCartProduct(Request $request)
     {
-        // Retrieve the cart products
+        $carts = Cart::content();
+        $Carttotal = Cart::total();
+        $cartcount = Cart::count();
+        return response()->json([
+            'carts' => $carts,
+            'Carttotal' => $Carttotal,
+            'cartcount' => $cartcount,
+        ]);
     }
 
     /**
@@ -50,14 +86,34 @@ class CartController extends Controller
      */
     public function removeCartProduct(Request $request)
     {
-        // Remove the product from the cart
+        Cart::remove($request->rowId);
+        return response()->json(['success' => 'Item successfully remove to cart!']);
     }
 
     /**
-     * updateCartProduct
+     * increment CartProduct
      */
-    public function updateCartProduct(Request $request)
+    public function incrementCartProduct(Request $request)
     {
-        // Update the cart product quantity
+        Cart::update($request->rowId, Cart::get($request->rowId)->qty + 1);
+        return response()->json(['success' => 'Item successfully inrement to cart!']);
+    }
+
+    /**
+     * decrement CartProduct
+     */
+    public function decrementCartProduct(Request $request)
+    {
+        Cart::update($request->rowId, Cart::get($request->rowId)->qty - 1);
+        return response()->json(['success' => 'Item successfully decrement to cart!']);
+    }
+
+    /**
+     * cart clear
+     */
+    public function Cartclear(Request $request)
+    {
+        Cart::destroy();
+        return response()->json(['success' => 'Cart successfully clear!']);
     }
 }

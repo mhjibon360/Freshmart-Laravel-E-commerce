@@ -115,7 +115,7 @@
                 <div class="col-lg-2 col-xxl-2 text-end col-md-6 col-7">
                     <div class="list-inline">
                         <div class="list-inline-item me-5">
-                            <a href="pages/shop-wishlist.html" class="text-muted position-relative">
+                            <a href="{{ route('wishlist') }}" class="text-muted position-relative">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                     stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart">
@@ -124,8 +124,8 @@
                                     </path>
                                 </svg>
                                 <span
-                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
-                                    5
+                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success top_wishit_counter" id="top_wishit_counter">
+                                    0
                                     <span class="visually-hidden">unread messages</span>
                                 </span>
                             </a>
@@ -153,8 +153,8 @@
                                     <path d="M16 10a4 4 0 0 1-8 0"></path>
                                 </svg>
                                 <span
-                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
-                                    1
+                                    class="minicart_counter position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
+                                    0
                                     <span class="visually-hidden">unread messages</span>
                                 </span>
                             </a>

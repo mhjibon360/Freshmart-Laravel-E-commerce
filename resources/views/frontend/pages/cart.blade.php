@@ -11,8 +11,8 @@
                     <!-- breadcrumb -->
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb mb-0">
-                            <li class="breadcrumb-item"><a href="#!">Home</a></li>
-                            <li class="breadcrumb-item"><a href="#!">Shop</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('home.index') }}">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('shop') }}">Shop</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Shop Cart</li>
                         </ol>
                     </nav>
@@ -30,7 +30,7 @@
                     <div class="card py-1 border-0 mb-8">
                         <div>
                             <h1 class="fw-bold">Shop Cart</h1>
-                            <p class="mb-0">Shopping in 382480</p>
+                            <p class="mb-0">Shopping in <span class="shop_page_cart_counter" id="shop_page_cart_counter"></span></p>
                         </div>
                     </div>
                 </div>

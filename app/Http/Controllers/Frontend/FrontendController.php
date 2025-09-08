@@ -12,6 +12,7 @@ use App\Models\Category;
 use App\Models\Subcategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\BlogCategory;
 use App\Models\BlogPost;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
@@ -78,15 +79,7 @@ class FrontendController extends Controller
         return view('frontend.pages.shop', compact(['allshopproducts', 'allcategorys', 'allcolors', 'allsize']));
     }
 
-    /**
-     * Show the cart page.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function cart()
-    {
-        return view('frontend.pages.cart');
-    }
+
 
     /**
      * Show the checkout page.
@@ -130,7 +123,6 @@ class FrontendController extends Controller
     public function blog()
     {
         $allblogs = BlogPost::with(['category', 'user'])->where('status', 1)->orderBy('id', 'asc')->paginate(10);
-        // return($allblogs);
         return view('frontend.pages.blog', compact('allblogs'));
     }
 
@@ -142,7 +134,9 @@ class FrontendController extends Controller
     public function blogdetails($slug)
     {
         $blog = BlogPost::with(['category', 'user'])->where('slug', $slug)->first();
-        return view('frontend.pages.blog-details', compact('blog'));
+        $wordcount = str_word_count(strip_tags($blog->details));
+        $time = ceil($wordcount / 200);
+        return view('frontend.pages.blog-details', compact(['blog', 'time']));
     }
 
     /**
@@ -150,19 +144,12 @@ class FrontendController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function blogcategory()
+    public function blogcategory($category_slug)
     {
-        return view('frontend.pages.blog-category');
-    }
-
-    /**
-     * Show the wishlist page.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function wishlist()
-    {
-        return view('frontend.pages.wishlist');
+        $category = BlogCategory::where('category_slug', $category_slug)->first();
+        // return($category);
+        $categoryblog = BlogPost::with(['category', 'user'])->where('category_id', $category->id)->paginate(20);
+        return view('frontend.pages.blog-category', compact(['categoryblog', 'category']));
     }
 
     /**

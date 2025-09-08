@@ -649,6 +649,7 @@ namespace App\Models{
  * @property string|null $product_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Product|null $product
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Wishlist newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Wishlist newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Wishlist query()

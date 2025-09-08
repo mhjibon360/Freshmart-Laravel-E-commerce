@@ -11,8 +11,8 @@
                     <!-- breadcrumb -->
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb mb-0">
-                            <li class="breadcrumb-item"><a href="#!">Home</a></li>
-                            <li class="breadcrumb-item"><a href="#!">Shop</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('home.index') }}">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('shop') }}">Shop</a></li>
                             <li class="breadcrumb-item active" aria-current="page">My Wishlist</li>
                         </ol>
                     </nav>
@@ -29,7 +29,10 @@
                     <div class="mb-8">
                         <!-- heading -->
                         <h1 class="mb-1">My Wishlist</h1>
-                        <p>There are 5 products in this wishlist.</p>
+                        <p>There are
+                            <span class="wishlistpage_product_count" id="wishlistpage_product_count">0</span>
+                            products in this wishlist.
+                        </p>
                     </div>
                     <div>
                         <!-- table -->
@@ -37,16 +40,7 @@
                             <table class="table text-nowrap table-with-checkbox">
                                 <thead class="table-light">
                                     <tr>
-                                        <th>
-                                            <!-- form check -->
-                                            <div class="form-check">
-                                                <!-- input -->
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    id="checkAll" />
-                                                <!-- label -->
-                                                <label class="form-check-label" for="checkAll"></label>
-                                            </div>
-                                        </th>
+                                        <th>Image</th>
                                         <th></th>
                                         <th>Product</th>
                                         <th>Amount</th>
@@ -55,20 +49,13 @@
                                         <th>Remove</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
+                                <tbody class="wishitpage_product_holder" id="wishitpage_product_holder">
+                                    {{-- <tr>
                                         <td class="align-middle">
-                                            <!-- form check -->
-                                            <div class="form-check">
-                                                <!-- input -->
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    id="chechboxTwo" />
-                                                <!-- label -->
-                                                <label class="form-check-label" for="chechboxTwo"></label>
-                                            </div>
                                         </td>
                                         <td class="align-middle">
-                                            <a href="#"><img src="{{ asset('frontend') }}/assets/images/products/product-img-18.jpg"
+                                            <a href="#"><img
+                                                    src="{{ asset('frontend') }}/assets/images/products/product-img-18.jpg"
                                                     class="icon-shape icon-xxl" alt="" /></a>
                                         </td>
                                         <td class="align-middle">
@@ -89,143 +76,7 @@
                                                 <i class="feather-icon icon-trash-2"></i>
                                             </a>
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="align-middle">
-                                            <!-- form check -->
-                                            <div class="form-check">
-                                                <!-- input -->
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    id="chechboxThree" />
-                                                <!-- label -->
-                                                <label class="form-check-label" for="chechboxThree"></label>
-                                            </div>
-                                        </td>
-                                        <td class="align-middle">
-                                            <a href="#"><img src="{{ asset('frontend') }}/assets/images/products/product-img-17.jpg"
-                                                    class="icon-shape icon-xxl" alt="" /></a>
-                                        </td>
-                                        <td class="align-middle">
-                                            <div>
-                                                <h5 class="fs-6 mb-0"><a href="#" class="text-inherit">Fresh Kiwi</a>
-                                                </h5>
-                                                <small>4 no</small>
-                                            </div>
-                                        </td>
-                                        <td class="align-middle">$20.97</td>
-                                        <td class="align-middle"><span class="badge bg-danger">Out of Stock</span></td>
-                                        <td class="align-middle">
-                                            <div class="btn btn-dark btn-sm">Contact us</div>
-                                        </td>
-                                        <td class="align-middle">
-                                            <a href="#" class="text-muted" data-bs-toggle="tooltip"
-                                                data-bs-placement="top" title="Delete">
-                                                <i class="feather-icon icon-trash-2"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="align-middle">
-                                            <!-- form check -->
-                                            <div class="form-check">
-                                                <!-- input -->
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    id="chechboxFour" />
-                                                <!-- label -->
-                                                <label class="form-check-label" for="chechboxFour"></label>
-                                            </div>
-                                        </td>
-                                        <td class="align-middle">
-                                            <a href="#"><img src="{{ asset('frontend') }}/assets/images/products/product-img-16.jpg"
-                                                    class="icon-shape icon-xxl" alt="" /></a>
-                                        </td>
-                                        <td class="align-middle">
-                                            <div>
-                                                <h5 class="fs-6 mb-0"><a href="#" class="text-inherit">Golden
-                                                        Pineapple</a></h5>
-                                                <small>2 no</small>
-                                            </div>
-                                        </td>
-                                        <td class="align-middle">$35.00</td>
-                                        <td class="align-middle"><span class="badge bg-success">In Stock</span></td>
-                                        <td class="align-middle">
-                                            <div class="btn btn-primary btn-sm">Add to Cart</div>
-                                        </td>
-                                        <td class="align-middle">
-                                            <a href="#" class="text-muted" data-bs-toggle="tooltip"
-                                                data-bs-placement="top" title="Delete">
-                                                <i class="feather-icon icon-trash-2"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="align-middle">
-                                            <!-- form check -->
-                                            <div class="form-check">
-                                                <!-- input -->
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    id="chechboxFive" />
-                                                <!-- label -->
-                                                <label class="form-check-label" for="chechboxFive"></label>
-                                            </div>
-                                        </td>
-                                        <td class="align-middle">
-                                            <a href="#"><img src="{{ asset('frontend') }}/assets/images/products/product-img-19.jpg"
-                                                    class="icon-shape icon-xxl" alt="" /></a>
-                                        </td>
-                                        <td class="align-middle">
-                                            <div>
-                                                <h5 class="fs-6 mb-0"><a href="#" class="text-inherit">BeatRoot</a>
-                                                </h5>
-                                                <small>1 kg</small>
-                                            </div>
-                                        </td>
-                                        <td class="align-middle">$29.00</td>
-                                        <td class="align-middle"><span class="badge bg-success">In Stock</span></td>
-                                        <td class="align-middle">
-                                            <div class="btn btn-primary btn-sm">Add to Cart</div>
-                                        </td>
-                                        <td class="align-middle">
-                                            <a href="#" class="text-muted" data-bs-toggle="tooltip"
-                                                data-bs-placement="top" title="Delete">
-                                                <i class="feather-icon icon-trash-2"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="align-middle">
-                                            <!-- form check -->
-                                            <div class="form-check">
-                                                <!-- input -->
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    id="chechboxSix" />
-                                                <!-- label -->
-                                                <label class="form-check-label" for="chechboxSix"></label>
-                                            </div>
-                                        </td>
-                                        <td class="align-middle">
-                                            <a href="#"><img src="{{ asset('frontend') }}/assets/images/products/product-img-15.jpg"
-                                                    class="icon-shape icon-xxl" alt="" /></a>
-                                        </td>
-                                        <td class="align-middle">
-                                            <div>
-                                                <h5 class="fs-6 mb-0"><a href="#" class="text-inherit">Fresh
-                                                        Apple</a></h5>
-                                                <small>2 kg</small>
-                                            </div>
-                                        </td>
-                                        <td class="align-middle">$70.00</td>
-                                        <td class="align-middle"><span class="badge bg-success">In Stock</span></td>
-                                        <td class="align-middle">
-                                            <div class="btn btn-primary btn-sm">Add to Cart</div>
-                                        </td>
-                                        <td class="align-middle">
-                                            <a href="#" class="text-muted" data-bs-toggle="tooltip"
-                                                data-bs-placement="top" title="Delete">
-                                                <i class="feather-icon icon-trash-2"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                    </tr> --}}
                                 </tbody>
                             </table>
                         </div>

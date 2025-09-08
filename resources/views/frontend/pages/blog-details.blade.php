@@ -25,14 +25,14 @@
                 <div class="col-md-8 offset-md-2">
                     <!-- text -->
                     <div class="mb-5">
-                        <div class="mb-3 text-center"><a href="#!">{{ $blog->category->category_name }}</a></div>
+                        <div class="mb-3 text-center"><a href="{{ route('blog.category',$blog->category->category_slug) }}">{{ $blog->category->category_name }}</a></div>
                         <h1 class="fw-bold text-center">{{ $blog->title }}</h1>
                         <div class="d-flex justify-content-center text-muted mt-4">
                             <span class="me-2"><small> {{ $blog->created_at->format('d M Y') }}</small></span>
                             <span>
                                 <small>
                                     Read time:
-                                    <span class="text-dark fw-bold">12min</span>
+                                    <span class="text-dark fw-bold">{{ $time }}min</span>
                                 </small>
                             </span>
                         </div>
