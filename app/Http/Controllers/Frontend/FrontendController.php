@@ -8,12 +8,13 @@ use App\Models\Color;
 use App\Models\Slider;
 use App\Models\Product;
 use App\Models\Service;
+use App\Models\BlogPost;
 use App\Models\Category;
 use App\Models\Subcategory;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\BlogCategory;
-use App\Models\BlogPost;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
 
@@ -80,16 +81,6 @@ class FrontendController extends Controller
     }
 
 
-
-    /**
-     * Show the checkout page.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function checkout()
-    {
-        return view('frontend.pages.checkout');
-    }
 
     /**
      * Show the category page.

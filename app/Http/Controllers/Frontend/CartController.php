@@ -63,7 +63,7 @@ class CartController extends Controller
             ]);
         }
 
-        return response()->json(['success' => 'Item successfully added to cart!']);
+        return response()->json(['success' => 'Added to cart successfully!!']);
 
         // Validate and add the product to the cart
     }

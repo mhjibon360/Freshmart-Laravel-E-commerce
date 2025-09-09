@@ -16,11 +16,11 @@ return Application::configure(basePath: dirname(__DIR__))
                 ->group(base_path('routes/admin.php'));
         },
     )
+
     ->withMiddleware(function (Middleware $middleware): void {
+
         $middleware->alias([
             'role' => \App\Http\Middleware\Role::class,
         ]);
     })
-    ->withExceptions(function (Exceptions $exceptions): void {
-        //
-    })->create();
+    ->withExceptions(function (Exceptions $exceptions): void {})->create();

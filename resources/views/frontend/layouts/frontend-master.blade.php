@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.4/jquery.rateyo.min.css"
         integrity="sha512-JEUoTOcC35/ovhE1389S9NxeGcVLIqOAEzlpcJujvyUaxvIXJN9VxPX0x1TwSo22jCxz2fHQPS1de8NgUyg+nA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
     @routes
 </head>
@@ -62,7 +63,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ asset('frontend/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('frontend/assets/libs/simplebar/dist/simplebar.min.js') }}"></script>
-
     <!-- Theme JS -->
     <script src="{{ asset('frontend/assets/js/theme.min.js') }}"></script>
 
@@ -81,6 +81,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.4/jquery.rateyo.min.js"
         integrity="sha512-09bUVOnphTvb854qSgkpY/UGKLW9w7ISXGrN0FR/QdXTkjs0D+EfMFMTB+CGiIYvBoFXexYwGUD5FD8xVU89mw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <script>
         $('.dropify').dropify({
@@ -112,6 +113,11 @@
                 e.preventDefault();
                 $('#image_box').toggle();
             });
+        });
+
+        // In your Javascript (external .js resource or <script> tag)
+        $(document).ready(function() {
+            $('.js-example-basic-single').select2();
         });
     </script>
     @stack('frontend-script')
@@ -218,9 +224,9 @@
                               <div class="input-group input-spinner">
                                 ${value.qty>1?
                                 `<input type="button" value="-" class="button-minus btn btn-sm"
-                                                                                              data-field="quantity" id="${value.rowId}" onclick="decrementCartItem(this.id)" />`:
+                                                                                                          data-field="quantity" id="${value.rowId}" onclick="decrementCartItem(this.id)" />`:
                                 `<input type="button" disabled value="-" class="button-minus btn btn-sm disabled"
-                                                                                              data-field="quantity" id="${value.rowId}" onclick="decrementCartItem(this.id)" />`}
+                                                                                                          data-field="quantity" id="${value.rowId}" onclick="decrementCartItem(this.id)" />`}
                                   <input type="number" step="1" max="10" value="${value.qty}" name="quantity"
                                       class="quantity-field form-control-sm form-input"  />
                                   <input type="button" value="+" class="button-plus btn btn-sm"
@@ -299,9 +305,9 @@
                               <div class="input-group input-spinner">
                                 ${value.qty>1?
                                 `<input type="button" value="-" class="button-minus btn btn-sm"
-                                                                                              data-field="quantity" id="${value.rowId}" onclick="decrementCartItem(this.id)" />`:
+                                                                                                          data-field="quantity" id="${value.rowId}" onclick="decrementCartItem(this.id)" />`:
                                 `<input type="button" disabled value="-" class="button-minus btn btn-sm disabled"
-                                                                                              data-field="quantity" id="${value.rowId}" onclick="decrementCartItem(this.id)" />`}
+                                                                                                          data-field="quantity" id="${value.rowId}" onclick="decrementCartItem(this.id)" />`}
                                   <input type="number" step="1" max="10" value="${value.qty}" name="quantity"
                                       class="quantity-field form-control-sm form-input"  />
                                   <input type="button" value="+" class="button-plus btn btn-sm"
@@ -549,11 +555,11 @@
                             <td class="align-middle">
                                 ${value.product.quantity>0 ?
                                 `
-                                                                                                                                                <span class="badge bg-success">In Stock</span>
-                                                                                                                                                `:
+                                                                                                                                                            <span class="badge bg-success">In Stock</span>
+                                                                                                                                                            `:
                                 `
-                                                                                                                                                 <span class="badge bg-danger">Out of Stock</span>
-                                                                                                                                                `}
+                                                                                                                                                             <span class="badge bg-danger">Out of Stock</span>
+                                                                                                                                                            `}
 
                             </td>
                             <td class="align-middle">
@@ -708,11 +714,11 @@
                         </div>
                         <div class="d-grid mb-1 mt-4">
                             <!-- btn -->
-                            <button class="btn btn-primary btn-lg d-flex justify-content-between align-items-center"
+                            <a href="${'/checkout'}" class="btn btn-primary btn-lg d-flex justify-content-between align-items-center"
                                 type="submit">
                                 Go to Checkout
                                 <span class="fw-bold">$${response.total_amount}</span>
-                            </button>
+                            </a>
                         </div>
                         `);
                     } else {
@@ -731,11 +737,11 @@
                         </div>
                         <div class="d-grid mb-1 mt-4">
                             <!-- btn -->
-                            <button class="btn btn-primary btn-lg d-flex justify-content-between align-items-center"
+                            <a href="${'/checkout'}" class="btn btn-primary btn-lg d-flex justify-content-between align-items-center"
                                 type="submit">
                                 Go to Checkout
                                 <span class="fw-bold">$${response.total_amount}</span>
-                            </button>
+                            </a>
                         </div>
                         `);
                     }

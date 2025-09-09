@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "17bd70ae029ab9730c8c3941d891c46c",
+    "content-hash": "672c4296aa176c2de9e48ad2b6b399da",
     "packages": [
         {
             "name": "anayarojo/shoppingcart",
@@ -4021,6 +4021,82 @@
             "time": "2025-06-25T14:20:11+00:00"
         },
         {
+            "name": "raziul/sslcommerz-laravel",
+            "version": "v1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/iRaziul/sslcommerz-laravel.git",
+                "reference": "4a422cf1f75a5e88367ade6bc2ae6e83d9e7f950"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/iRaziul/sslcommerz-laravel/zipball/4a422cf1f75a5e88367ade6bc2ae6e83d9e7f950",
+                "reference": "4a422cf1f75a5e88367ade6bc2ae6e83d9e7f950",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^10.0||^11.0||^12.0",
+                "php": "^8.2||^8.3||^8.4",
+                "spatie/laravel-package-tools": "^1.16"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.14",
+                "nunomaduro/collision": "^8.1.1||^7.10.0||^8.6",
+                "orchestra/testbench": "^9.0.0||^8.22.0",
+                "pestphp/pest": "^2.34",
+                "pestphp/pest-plugin-arch": "^2.7",
+                "pestphp/pest-plugin-laravel": "^2.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "Sslcommerz": "Raziul\\Sslcommerz\\Facades\\Sslcommerz"
+                    },
+                    "providers": [
+                        "Raziul\\Sslcommerz\\SslcommerzServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Raziul\\Sslcommerz\\": "src/",
+                    "Raziul\\Sslcommerz\\Database\\Factories\\": "database/factories/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Raziul Islam",
+                    "email": "raziul.dev@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "SSLCommerz Laravel is a super easy package to integrate SSLCommerz on Laravel websites.",
+            "homepage": "https://github.com/iraziul/sslcommerz-laravel",
+            "keywords": [
+                "laravel",
+                "laravel-sslcommerz",
+                "sslcommerz",
+                "sslcommerz-laravel",
+                "sslcommerz-payment-gateway"
+            ],
+            "support": {
+                "issues": "https://github.com/iRaziul/sslcommerz-laravel/issues",
+                "source": "https://github.com/iRaziul/sslcommerz-laravel/tree/v1.0.2"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/raziul",
+                    "type": "github"
+                }
+            ],
+            "time": "2025-02-26T06:31:35+00:00"
+        },
+        {
             "name": "spatie/laravel-package-tools",
             "version": "1.92.7",
             "source": {
@@ -4154,6 +4230,65 @@
                 }
             ],
             "time": "2025-08-04T07:36:33+00:00"
+        },
+        {
+            "name": "stripe/stripe-php",
+            "version": "v17.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/stripe/stripe-php.git",
+                "reference": "a6219df5df1324a0d3f1da25fb5e4b8a3307ea16"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/a6219df5df1324a0d3f1da25fb5e4b8a3307ea16",
+                "reference": "a6219df5df1324a0d3f1da25fb5e4b8a3307ea16",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "3.72.0",
+                "phpstan/phpstan": "^1.2",
+                "phpunit/phpunit": "^5.7 || ^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Stripe\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stripe and contributors",
+                    "homepage": "https://github.com/stripe/stripe-php/contributors"
+                }
+            ],
+            "description": "Stripe PHP Library",
+            "homepage": "https://stripe.com/",
+            "keywords": [
+                "api",
+                "payment processing",
+                "stripe"
+            ],
+            "support": {
+                "issues": "https://github.com/stripe/stripe-php/issues",
+                "source": "https://github.com/stripe/stripe-php/tree/v17.6.0"
+            },
+            "time": "2025-08-27T19:32:42+00:00"
         },
         {
             "name": "symfony/clock",

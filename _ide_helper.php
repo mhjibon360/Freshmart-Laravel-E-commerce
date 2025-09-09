@@ -24423,6 +24423,145 @@ namespace Flasher\Notyf\Laravel\Facade {
             }
     }
 
+namespace Raziul\Sslcommerz\Facades {
+    /**
+     * @see \Raziul\Sslcommerz\SslcommerzClient
+     */
+    class Sslcommerz {
+        /**
+         * Set the callback URLs for the payment.
+         *
+         * @static
+         */
+        public static function setCallbackUrls($successUrl, $failedUrl, $cancelUrl, $ipnUrl)
+        {
+            /** @var \Raziul\Sslcommerz\SslcommerzClient $instance */
+            return $instance->setCallbackUrls($successUrl, $failedUrl, $cancelUrl, $ipnUrl);
+        }
+
+        /**
+         * Set the gateways to be displayed in the payment page.
+         * 
+         * To display all gateways, pass `null` as the argument.
+         *
+         * @static
+         */
+        public static function setGateways($gateways)
+        {
+            /** @var \Raziul\Sslcommerz\SslcommerzClient $instance */
+            return $instance->setGateways($gateways);
+        }
+
+        /**
+         * Set the product profile for the payment.
+         * 
+         * Possible values are:
+         *     - general
+         *     - physical-goods
+         *     - non-physical-goods
+         *     - airline-tickets
+         *     - travel-vertical
+         *     - telecom-vertical
+         *
+         * @static
+         */
+        public static function setProductProfile($profile)
+        {
+            /** @var \Raziul\Sslcommerz\SslcommerzClient $instance */
+            return $instance->setProductProfile($profile);
+        }
+
+        /**
+         * Set the order details for the payment.
+         *
+         * @static
+         */
+        public static function setOrder($amount, $invoiceId, $productName, $productCategory = ' ')
+        {
+            /** @var \Raziul\Sslcommerz\SslcommerzClient $instance */
+            return $instance->setOrder($amount, $invoiceId, $productName, $productCategory);
+        }
+
+        /**
+         * Set the customer details for the payment.
+         *
+         * @static
+         */
+        public static function setCustomer($name, $email, $phone = ' ', $address = ' ', $city = ' ', $state = ' ', $postal = ' ', $country = 'Bangladesh', $fax = null)
+        {
+            /** @var \Raziul\Sslcommerz\SslcommerzClient $instance */
+            return $instance->setCustomer($name, $email, $phone, $address, $city, $state, $postal, $country, $fax);
+        }
+
+        /**
+         * Set the shipping information for the payment.
+         *
+         * @static
+         */
+        public static function setShippingInfo($quantity, $address, $name = null, $city = null, $state = null, $postal = null, $country = null)
+        {
+            /** @var \Raziul\Sslcommerz\SslcommerzClient $instance */
+            return $instance->setShippingInfo($quantity, $address, $name, $city, $state, $postal, $country);
+        }
+
+        /**
+         * Make a payment through SSLCommerz.
+         *
+         * @static
+         */
+        public static function makePayment($additionalData = [])
+        {
+            /** @var \Raziul\Sslcommerz\SslcommerzClient $instance */
+            return $instance->makePayment($additionalData);
+        }
+
+        /**
+         * Validate a payment through SSLCommerz validator.
+         *
+         * @static
+         */
+        public static function validatePayment($payload, $transactionId, $amount, $currency = 'BDT')
+        {
+            /** @var \Raziul\Sslcommerz\SslcommerzClient $instance */
+            return $instance->validatePayment($payload, $transactionId, $amount, $currency);
+        }
+
+        /**
+         * Verify the hash from SSLCommerz response.
+         *
+         * @static
+         */
+        public static function verifyHash($data)
+        {
+            /** @var \Raziul\Sslcommerz\SslcommerzClient $instance */
+            return $instance->verifyHash($data);
+        }
+
+        /**
+         * Refund a payment through SSLCommerz.
+         *
+         * @static
+         */
+        public static function refundPayment($bankTransactionId, $amount, $reason)
+        {
+            /** @var \Raziul\Sslcommerz\SslcommerzClient $instance */
+            return $instance->refundPayment($bankTransactionId, $amount, $reason);
+        }
+
+        /**
+         * Check the refund status through SSLCommerz.
+         *
+         * @static
+         */
+        public static function checkRefundStatus($refundRefId)
+        {
+            /** @var \Raziul\Sslcommerz\SslcommerzClient $instance */
+            return $instance->checkRefundStatus($refundRefId);
+        }
+
+            }
+    }
+
 namespace Illuminate\Support {
     /**
      * @template TKey of array-key
@@ -29379,6 +29518,7 @@ namespace  {
     class Avatar extends \Laravolt\Avatar\Facade {}
     class Flasher extends \Flasher\Laravel\Facade\Flasher {}
     class Notyf extends \Flasher\Notyf\Laravel\Facade\Notyf {}
+    class Sslcommerz extends \Raziul\Sslcommerz\Facades\Sslcommerz {}
 }
 
 

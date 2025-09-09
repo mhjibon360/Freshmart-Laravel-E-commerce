@@ -13,7 +13,7 @@
                         <ol class="breadcrumb mb-0">
                             <li class="breadcrumb-item"><a href="{{ route('home.index') }}">Home</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('shop') }}">Shop</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Shop Checkout</li>
+                            <li class="breadcrumb-item active" aria-current="page">payment</li>
                         </ol>
                     </nav>
                 </div>
@@ -30,7 +30,7 @@
                     <div>
                         <div class="mb-8">
                             <!-- text -->
-                            <h1 class="fw-bold mb-0">Checkout</h1>
+                            <h1 class="fw-bold mb-0">payment cashier</h1>
                         </div>
                     </div>
                 </div>
@@ -38,9 +38,9 @@
             <div>
                 <!-- row -->
                 <div class="row">
-                    @include('frontend.layouts.partials.checkout.checkout-lrft-billing-detaila')
+                    @include('frontend.layouts.partials.checkout-cashier.checkout-cashier-left-detaila')
 
-                   @include('frontend.layouts.partials.checkout.checkout-right-product-item-calculation')
+                    @include('frontend.layouts.partials.checkout.checkout-right-product-item-calculation')
                 </div>
             </div>
         </div>
